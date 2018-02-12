@@ -1,0 +1,11 @@
+{
+  "name": "game-lucky",
+  "version": "1.0.0",
+  "description": "Catch the cat and win some luck",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jessica Bodie Richards",
+  "license": "ISC"
+}
