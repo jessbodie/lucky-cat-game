@@ -3,9 +3,25 @@
   "version": "1.0.0",
   "description": "Catch the cat and win some luck",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jessbodie/lucky-cat-game"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch:sass": "node-sass sass/main.scss css/style.css -w",
+    "devserver": "live-server --browser=firefox",
+    "start": "npm-run-all --parallel devserver watch:sass",
+    "compile:sass": "node-sass sass/main.scss css/style.comp.css",
+    "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.comp.css -o css/style.prefix.css",
+    "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
+    "build:css": "npm-run-all compile:sass prefix:css compress:css"
   },
   "author": "Jessica Bodie Richards",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^8.0.0",
+    "node-sass": "^4.7.2",
+    "npm-run-all": "^5.0.0",
+    "postcss-cli": "^5.0.0"
+  }
 }

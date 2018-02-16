@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+     <!-- Fonts -->
+     <!-- <link href="https://fonts.googleapis.com/css?family=Codystar|Roboto" rel="stylesheet"> -->
+     <link rel="stylesheet" type="text/css" href="css/style.css">
+
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     <meta name="description" content="Basketball Scorekeeping for Youth Leagues">
+     <meta name="robots" content="index, follow">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.8, maximum-scale=1.2">
+
+     <noscript>Please enable JavaScript!</noscript>
+
+     <!--Begin Favicon, thanks to https://realfavicongenerator.net -->
+     <!-- TODO -->
+
+     <title>Lucky Cat - Game</title>
+
+</head>
+
+<body>
+
+
+  <!-- Nav -->
+  <!-- <div class="nav">
+  </div>  -->
+
+  <!-- // TODO, ADD TRANSPARENT BUTTON TO GO FULL SCREEN -->
+  <!-- https://developers.google.com/web/fundamentals/native-hardware/fullscreen/ -->
+  <!-- <input type="button" value="horizontal" id="goFS"> -->
+  <!-- <input type="button" value="close this view"> -->
+
+
+  <!-- TODO INTRO ANIMATION -->
+  <header id="">
+  </header>
+  
+  <div class="container">
+    <div class="canvas">
+      <div class="canvas__interior">
+        <div class="target" id="target">pp</div>
+
+      </div>
+    </div>
+
+
+    <div class="play">
+      <input type="button" class="btn-play" id="btn-play-again" value="Play Again"/>
+    </div>
+    
+
+    <div class="status">
+
+      <div class="status__score">
+        <div class="status__score--label">Score:</div> 
+        <div class="status__score--data" id="score">0</div> 
+      </div>
+      <div class="status__level">
+        <div class="status__level--label">Level:</div> 
+        <div class="status__level--data">1</div> 
+      </div>
+    </div>
+  </div>
+      
+
+
+    <!-- // GO FULL SCREEN -->
+    <!-- <script>
+      var goFS = document.getElementById("goFS");
+      goFS.addEventListener("click", function() {
+          console.log('yo');
+            var doc = window.document;
+            var docEl = doc.documentElement;
+          
+            var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+            var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+          
+            if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+              requestFullScreen.call(docEl);
+            }
+            else {
+              cancelFullScreen.call(doc);
+            }
+          }, false);
+    </script> -->
+
+  <script src="scripts/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+.container {
+    display: grid;
+    grid-template-rows: 
+        [top-start] $max-move 
+        [interior-top] 1fr 
+        [interior-end] $max-move [bottom-end];
+    grid-template-columns: 
+        [left-start] $max-move 
+        [interior-left] 1fr 
+        [interior-right] $max-move 
+        [status-start] 10rem [right-end];
+    background: linear-gradient(90deg, $color-green-dull 0%, 
+        $color-green-lime 50%, $color-green-dull 100%);  
+    position: relative;
+    opacity: .99;    
+    z-index: $z-index-back;
+}

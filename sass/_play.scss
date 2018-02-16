@@ -1,0 +1,7 @@
+.play {
+    grid-row: interior-top / interior-end;
+    grid-column: interior-left / interior-right;
+    margin: auto;
+    cursor: pointer;
+    z-index: $z-index-target;
+}

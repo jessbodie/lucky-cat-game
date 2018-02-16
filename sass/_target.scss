@@ -1,0 +1,45 @@
+.target {
+    display: none;
+
+    &--start {
+        border: 1px solid red;
+        padding: .5rem;
+
+        display: inline-block;
+        position: relative;
+        // top: $canvas-height-interior;
+        // left: $canvas-width-interior;
+        z-index: $z-index-target;
+        opacity: 1;
+        transform: scale(1.2) translate3d(0, 0, 0);
+
+        &:hover {
+            cursor: pointer;
+        }
+
+
+    }
+
+    &--end {
+        border: 1px solid red;
+        padding: .5rem;
+        background-color: green;
+        display: inline-block;
+        position: relative;
+        z-index: $z-index-target;
+
+        opacity: 0.3;
+        // transform: scale(.5) translate3d(5rem, 5rem, 0);
+        // transition-duration: 2s, 2s;
+
+        transition-property: opacity, transform;
+        transition-timing-function: ease-in-out;
+
+        // top: $canvas-height-interior;
+        // left: $canvas-width-interior;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

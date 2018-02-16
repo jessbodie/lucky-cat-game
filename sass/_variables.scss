@@ -1,0 +1,29 @@
+// DIMENSIONS
+$canvas-width: 100%;
+$canvas-height: 50vw;
+$canvas-width-interior: calc(#{$canvas-width - 3%});
+$canvas-height-interior: 94%;
+
+$max-move: 5rem;
+
+// Z-INDEX
+$z-index-target: 100;
+$z-index-back: 0;
+$z-index-canvas: 1;
+
+
+
+// COLOR
+$color-green-dull: #6C9D83;
+$color-green-lime: #B2DA9D;
+
+$color-green: #219B5B;
+$color-green-dark: #009245;
+$color-blue: #2E6AC5;
+$color-blue-dark: #0054D4;
+$color-purple: #8F42BB;
+$color-purple-dark: #9630CF;
+
+$color-gray: #C6D9CE;
+$color-black: #1B1B1B;
+   

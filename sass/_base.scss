@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+
+html {
+  box-sizing: border-box;
+  font-size: calc(6.5px + .5vw);
+  // font-size: 62.5%; // 1rem = 10px
+
+
+body {
+    // font-family: $font-primary;
+    // font-size: $font-default-size;
+    // background-color: $color-home-light;
+    // min-width: $app-min-width;
+    // max-width: $app-max-width;
+    margin: 0 auto;
+  }
+}  

@@ -1,0 +1,86 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  box-sizing: border-box;
+  font-size: calc(6.5px + .5vw); }
+  html body {
+    margin: 0 auto; }
+
+.container {
+  display: grid;
+  grid-template-rows: [top-start] 5rem [interior-top] 1fr [interior-end] 5rem [bottom-end];
+  grid-template-columns: [left-start] 5rem [interior-left] 1fr [interior-right] 5rem [status-start] 10rem [right-end];
+  background: linear-gradient(90deg, #6C9D83 0%, #B2DA9D 50%, #6C9D83 100%);
+  position: relative;
+  opacity: .99;
+  z-index: 0; }
+
+.canvas {
+  grid-row: top-start / bottom-end;
+  grid-column: left-start / status-start;
+  width: 100%;
+  height: 50vw;
+  opacity: .99;
+  position: relative;
+  z-index: 1; }
+  .canvas__interior {
+    grid-row: interior-top / interior-end;
+    grid-column: interior-left / interior-right;
+    width: calc(100% - (10rem));
+    height: calc(50vw - (10rem));
+    margin: 5rem auto;
+    vertical-align: middle;
+    opacity: .99;
+    position: relative;
+    z-index: 1;
+    border: 1px solid gray; }
+
+.status {
+  grid-row: top-start / bottom-end;
+  grid-column: status-start / right-end;
+  display: grid;
+  grid-template-columns: repeat(3, [col-start] 1fr [col-end]);
+  grid-template-rows: [status-top] 2fr [feedback-start] 1fr [feedback-end score-start] 5rem [score-end pot-start] 6rem [pot-end level-start] 3rem [level-end] 2rem [status-bottom]; }
+  .status__score {
+    grid-row: score-start / score-end;
+    grid-column: 1 / -1; }
+  .status__level {
+    grid-row: level-start / level-end;
+    grid-column: 1 / -1; }
+
+.target {
+  display: none; }
+  .target--start {
+    border: 1px solid red;
+    padding: .5rem;
+    display: inline-block;
+    position: relative;
+    z-index: 100;
+    opacity: 1;
+    transform: scale(1.2) translate3d(0, 0, 0); }
+    .target--start:hover {
+      cursor: pointer; }
+  .target--end {
+    border: 1px solid red;
+    padding: .5rem;
+    background-color: green;
+    display: inline-block;
+    position: relative;
+    z-index: 100;
+    opacity: 0.3;
+    transition-property: opacity, transform;
+    transition-timing-function: ease-in-out; }
+    .target--end:hover {
+      cursor: pointer; }
+
+.play {
+  grid-row: interior-top / interior-end;
+  grid-column: interior-left / interior-right;
+  margin: auto;
+  cursor: pointer;
+  z-index: 100; }

@@ -1,0 +1,25 @@
+.canvas {
+    grid-row: top-start / bottom-end;
+    grid-column: left-start / status-start;
+    width: $canvas-width;
+    height: $canvas-height;
+    opacity: .99;
+    position: relative;
+    z-index: $z-index-canvas;
+
+    &__interior {
+        grid-row: interior-top / interior-end;
+        grid-column: interior-left / interior-right;
+        width: calc(#{$canvas-width} - (#{$max-move * 2}));
+        height: calc(#{$canvas-height} - (#{$max-move * 2}));
+        margin: $max-move auto;
+        vertical-align: middle;
+        opacity: .99;
+        position: relative;
+        z-index: $z-index-canvas;
+        border: 1px solid gray;
+
+        
+       
+    }
+}

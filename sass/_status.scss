@@ -1,0 +1,25 @@
+.status {
+    grid-row: top-start / bottom-end;
+    grid-column: status-start / right-end;
+
+    display: grid;
+    grid-template-columns: repeat(3, [col-start] 1fr [col-end]);
+    grid-template-rows: 
+        [status-top] 2fr
+        [feedback-start] 1fr
+        [feedback-end score-start] 5rem
+        [score-end pot-start] 6rem
+        [pot-end level-start] 3rem
+        [level-end] 2rem [status-bottom];
+
+    &__score {
+        grid-row: score-start / score-end;
+        grid-column: 1 / -1;
+    }    
+
+    &__level {
+        grid-row: level-start / level-end;
+        grid-column: 1 / -1;
+    }    
+
+}
