@@ -4,4 +4,8 @@
     margin: auto;
     cursor: pointer;
     z-index: $z-index-target;
+    border: .5rem solid $color-green;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
 }

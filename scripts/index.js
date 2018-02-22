@@ -111,7 +111,7 @@ var controller = (function(UICtrl, dataCtrl) {
         var animDelay = dataCtrl.getRand(0, 600);
 
         // Get random animation duration time, ms
-        var animDuration = dataCtrl.getRand(0, 2500);
+        var animDuration = dataCtrl.getRand(1000, 3500);
 
         // get random movement in rem
         var xMove = dataCtrl.getRand(-5, 5);

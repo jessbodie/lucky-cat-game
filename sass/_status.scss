@@ -1,25 +1,94 @@
 .status {
     grid-row: top-start / bottom-end;
     grid-column: status-start / right-end;
+    width: 100%;
 
     display: grid;
     grid-template-columns: repeat(3, [col-start] 1fr [col-end]);
     grid-template-rows: 
         [status-top] 2fr
         [feedback-start] 1fr
-        [feedback-end score-start] 5rem
-        [score-end pot-start] 6rem
-        [pot-end level-start] 3rem
-        [level-end] 2rem [status-bottom];
+        [feedback-end score-start] min-content
+        [score-end pot-start] min-content
+        [pot-end level-start] min-content
+        [level-end] 1.5rem [status-bottom];
 
     &__score {
         grid-row: score-start / score-end;
         grid-column: 1 / -1;
+        width: 6rem;
+        font-size: 2.5rem;
+        background-color: $color-gray;
+        padding: 0rem 1rem;
+        margin: 0.75rem 2rem;
+        color: $color-black;
+        border-radius: 2px;
+        text-align: right;
+        box-shadow: 2px 2px 2px 1px rgba($color-black, .2);
     }    
+
+    &__pic {
+        grid-row: pot-start / pot-end;
+        grid-column: 1 / -1;
+        margin: 0 auto;
+        filter: drop-shadow( 2px 2px 2px rgba($color-black, .6) );
+
+        svg {
+            width: 6rem;
+            height: auto;
+
+        }
+    }
 
     &__level {
         grid-row: level-start / level-end;
         grid-column: 1 / -1;
-    }    
+        width: 100%;
+        padding: 0rem 1rem;
+        text-align: center;
+    }  
+    
+    &__top--green {
+        grid-row: status-top / feedback-start;
+        grid-column: 1 / span 1;
+        background: linear-gradient(0deg, rgba($color-green-dark, 0) 10%, 
+            $color-green-dark 60%, rgba($color-green, .9) 100%);  
+    }
+
+    &__top--blue {
+        grid-row: status-top / feedback-start;
+        grid-column: 2 / span 1;
+        background: linear-gradient(0deg, rgba($color-blue-dark, 0) 5%, 
+            $color-blue-dark 60%, rgba($color-blue, .9) 100%);  
+    }
+
+    &__top--purple {
+        grid-row: status-top / feedback-start;
+        grid-column: 3 / span 1;
+        background: linear-gradient(0deg, rgba($color-purple-dark, 0) 0%, 
+            $color-purple-dark 60%, rgba($color-purple, .9) 100%);  
+    }
+
+    
+    &__bot--green {
+        grid-row: level-end / status-bottom;
+        grid-column: 1 / span 1;
+        background: linear-gradient(0deg, rgba($color-green-dark, 1) 0%, 
+            rgba($color-green, 0) 100%);  
+    }
+
+    &__bot--blue {
+        grid-row: level-end / status-bottom;
+        grid-column: 2 / span 1;
+        background: linear-gradient(0deg, rgba($color-blue-dark, 1) 0%, 
+            rgba($color-blue, 0) 100%);  
+    }
+
+    &__bot--purple {
+        grid-row: level-end / status-bottom;
+        grid-column: 3 / span 1;
+        background: linear-gradient(0deg, rgba($color-purple-dark, 1) 0%, 
+            rgba($color-purple, 0) 100%);  
+    }
 
 }

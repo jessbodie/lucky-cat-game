@@ -14,4 +14,6 @@
     position: relative;
     opacity: .99;    
     z-index: $z-index-back;
+    width: 100vw;
+    overflow: hidden;
 }

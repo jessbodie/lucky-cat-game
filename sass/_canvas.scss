@@ -6,6 +6,7 @@
     opacity: .99;
     position: relative;
     z-index: $z-index-canvas;
+    overflow-y: scroll;
 
     &__interior {
         grid-row: interior-top / interior-end;
@@ -17,9 +18,9 @@
         opacity: .99;
         position: relative;
         z-index: $z-index-canvas;
-        border: 1px solid gray;
+        border: 1px solid $color-green;
 
-        
+
        
     }
 }

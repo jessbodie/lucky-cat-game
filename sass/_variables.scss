@@ -1,8 +1,8 @@
 // DIMENSIONS
-$canvas-width: 100%;
+$canvas-width: 100vw;
 $canvas-height: 50vw;
-$canvas-width-interior: calc(#{$canvas-width - 3%});
-$canvas-height-interior: 94%;
+$canvas-width-interior: calc(#{$canvas-width - 3vw});
+$canvas-height-interior: 94vw;
 
 $max-move: 5rem;
 
@@ -10,6 +10,7 @@ $max-move: 5rem;
 $z-index-target: 100;
 $z-index-back: 0;
 $z-index-canvas: 1;
+
 
 
 
