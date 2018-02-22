@@ -9,18 +9,15 @@
 
 html {
   box-sizing: border-box;
-  font-size: calc(6.5px + .66vw);
-  color: $color-black;
   // font-size: 62.5%; // 1rem = 10px
 
 
 body {
-    // font-family: $font-primary;
-    // font-size: $font-default-size;
-    // background-color: $color-home-light;
     // min-width: $app-min-width;
     // max-width: $app-max-width;
-    margin: 0 auto;
+    font-size: calc(6.5px + .66vw);
+    color: $color-black;
+      margin: 0 auto;
     font-family: 'Poppins', sans-serif;
   }
 }  

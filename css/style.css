@@ -6,10 +6,10 @@
   box-sizing: inherit; }
 
 html {
-  box-sizing: border-box;
-  font-size: calc(6.5px + .66vw);
-  color: #1B1B1B; }
+  box-sizing: border-box; }
   html body {
+    font-size: calc(6.5px + .66vw);
+    color: #1B1B1B;
     margin: 0 auto;
     font-family: 'Poppins', sans-serif; }
 
