@@ -73,20 +73,22 @@ html {
   grid-template-columns: repeat(3, [col-start] 1fr [col-end]);
   grid-template-rows: [status-top] 2fr [feedback-start] 1fr [feedback-end score-start] min-content [score-end pot-start] min-content [pot-end level-start] min-content [level-end] 1.2rem [status-bottom]; }
   .status__feedback {
-    grid-row: feedback-start / feedback-end;
+    grid-row: status-top / feedback-end;
     grid-column: 1 / -1;
-    margin: -0.5rem auto;
+    margin: -0.8rem auto;
     padding: 0;
     align-self: end;
-    display: none; }
-    .status__feedback svg {
+    display: block; }
+    .status__feedback img, .status__feedback svg {
       animation-name: disappearUp;
-      animation-delay: 1s;
-      animation-duration: 3s;
-      animation-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
+      animation-delay: 0.5s;
+      animation-duration: 5s;
+      animation-timing-function: ease-out;
       animation-fill-mode: forwards;
       width: 4rem;
-      height: auto; }
+      height: auto;
+      z-index: 50;
+      display: block; }
   .status__score {
     grid-row: score-start / score-end;
     grid-column: 1 / -1;
@@ -143,25 +145,36 @@ html {
   width: 4em;
   height: auto;
   filter: drop-shadow(2px 2px 2px rgba(27, 27, 27, 0.6));
-  position: absolute;
-  padding: .5rem; }
+  position: absolute; }
+  .target--cat {
+    transform: scale(1.5); }
+  .target:hover {
+    cursor: pointer; }
+  .target--wreath {
+    display: inline-block;
+    position: relative;
+    z-index: 50;
+    opacity: 0;
+    position: absolute;
+    top: -2.5rem;
+    left: -2rem;
+    width: 200%;
+    height: 200%; }
+    .target--wreath:hover, .target--wreath:active, .target--wreath:focus {
+      opacity: 1; }
   .target--start {
     display: inline-block;
     position: relative;
     z-index: 100;
     opacity: 1;
     transform: scale(1.2) translate3d(0, 0, 0); }
-    .target--start:hover {
-      cursor: pointer; }
   .target--end {
     display: inline-block;
     position: relative;
     z-index: 100;
-    opacity: 0.05;
+    opacity: 0.1;
     transition-property: opacity, transform;
     transition-timing-function: ease-in-out; }
-    .target--end:hover {
-      cursor: pointer; }
 
 .play {
   grid-row: interior-top / interior-end;
@@ -176,9 +189,13 @@ html {
     height: auto; }
 
 @keyframes disappearUp {
-  from {
+  0% {
     opacity: 1;
-    transform: scale(1) translate3d(0, 0, 0); }
-  to {
+    transform: scale(1) translateX(0) translateY(0); }
+  30% {
+    transform: scale(0.7) translateX(0.5rem) translateY(-4rem); }
+  70% {
+    transform: scale(0.4) translateX(-1.5rem) translateY(-12rem); }
+  100% {
     opacity: 0;
-    transform: scale(0.2) translate3d(4rem, -12rem, 0); } }
+    transform: scale(0.2) translateX(1rem) translateY(-30rem); } }

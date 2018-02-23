@@ -64,10 +64,17 @@ var UIController = (function() {
             document.getElementById("target").setAttribute("style", "display: none;")
         },
 
+        // Show shamrocks above score area as feedback for points earned
         displayFeedback: function() {
-            console.log('display feedback');
-            document.getElementById("feedback").setAttribute("style", 
-                "display: block;")
+            var shamrocksPic = document.createElement("img");
+            shamrocksPic.src = "img/3-shamrocks.svg";
+            shamrocksPic.alt = "Good catch, shamrocks show points scored!"
+            shamrocksPic.id = "shamrock-feedback";
+            var visualFeedback = document.getElementById("feedback").appendChild(shamrocksPic);
+            // When animation ends, removed shamrock element
+            document.getElementById("shamrock-feedback").addEventListener("animationend", function() {
+                document.getElementById("shamrock-feedback").remove();
+            });
         },
 
         displayPlayBtn: function() {
@@ -80,7 +87,6 @@ var UIController = (function() {
                 "display: none;")
         }
     }
-
 })();
 
 
@@ -118,6 +124,8 @@ var controller = (function(UICtrl, dataCtrl) {
             showNewTarget();
         });
 
+
+
         // Reset timer on user activity
         document.addEventListener("mousemove", resetTimer, false);
         document.addEventListener("mousedown", resetTimer, false);
@@ -137,17 +145,17 @@ var controller = (function(UICtrl, dataCtrl) {
         var yLoc = dataCtrl.getRand(0, 94);
         
         // Get random animation delay time, ms
-        var animDelay = dataCtrl.getRand(200, 1100);
+        var animDelay = dataCtrl.getRand(400, 1100);
 
         // Get random animation duration time, ms
-        var animDuration = dataCtrl.getRand(500, 1500);
+        var animDuration = dataCtrl.getRand(500, 1000);
 
         // get random movement in rem
         var xMove = dataCtrl.getRand(-5, 5);
         var yMove = dataCtrl.getRand(-5, 5);
 
         // Get random scale size
-        var scaleSize = (dataCtrl.getRand(3, 9) / 10);
+        var scaleSize = (dataCtrl.getRand(2, 9) / 10);
         console.log(xLoc + ", " + yLoc + " / delay: " + animDelay);
         console.log("scaleSize: " + scaleSize + " Move: " + xMove + ", " + yMove);
         

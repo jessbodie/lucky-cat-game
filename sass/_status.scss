@@ -15,21 +15,24 @@
         [level-end] 1.2rem [status-bottom];
 
     &__feedback {
-        grid-row: feedback-start / feedback-end;
+        grid-row: status-top / feedback-end;
         grid-column: 1 / -1;
-        margin: -0.5rem auto;
+        margin: -0.8rem auto;
         padding: 0;
         align-self: end;
-        display: none;
+        display: block;
 
-        svg {
+        img, svg {
             animation-name: disappearUp;
-            animation-delay: 1s;
-            animation-duration: 3s;
-            animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+            animation-delay: 0.5s;
+            animation-duration: 5s;
+            animation-timing-function: ease-out;
+            // animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
             animation-fill-mode: forwards;
             width: 4rem;
             height: auto;
+            z-index: $z-index-feedback;
+            display: block;
         }
 
     }
