@@ -3,6 +3,7 @@
     grid-column: status-start / right-end;
     width: 100%;
 
+    position: relative;
     display: grid;
     grid-template-columns: repeat(3, [col-start] 1fr [col-end]);
     grid-template-rows: 
@@ -11,7 +12,27 @@
         [feedback-end score-start] min-content
         [score-end pot-start] min-content
         [pot-end level-start] min-content
-        [level-end] 1.5rem [status-bottom];
+        [level-end] 1.2rem [status-bottom];
+
+    &__feedback {
+        grid-row: feedback-start / feedback-end;
+        grid-column: 1 / -1;
+        margin: -0.5rem auto;
+        padding: 0;
+        align-self: end;
+        display: none;
+
+        svg {
+            animation-name: disappearUp;
+            animation-delay: 1s;
+            animation-duration: 3s;
+            animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+            animation-fill-mode: forwards;
+            width: 4rem;
+            height: auto;
+        }
+
+    }
 
     &__score {
         grid-row: score-start / score-end;
@@ -36,7 +57,6 @@
         svg {
             width: 4rem;
             height: auto;
-
         }
     }
 

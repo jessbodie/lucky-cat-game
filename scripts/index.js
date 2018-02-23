@@ -64,14 +64,18 @@ var UIController = (function() {
             document.getElementById("target").setAttribute("style", "display: none;")
         },
 
+        displayFeedback: function() {
+            console.log('display feedback');
+            document.getElementById("feedback").setAttribute("style", 
+                "display: block;")
+        },
+
         displayPlayBtn: function() {
-            console.log('display play button');
             document.getElementById("play-btn").setAttribute("style", 
                 "display: block;")
         },
 
         hidePlayBtn: function() {
-            console.log('hide play button');
             document.getElementById("play-btn").setAttribute("style", 
                 "display: none;")
         }
@@ -86,7 +90,7 @@ var controller = (function(UICtrl, dataCtrl) {
     // Event listeners
     var setupEventListeners = function() {
         // Load new target on DOM load
-        document.addEventListener("DOMContentLoaded", showNewTarget);
+        window.addEventListener("load", showNewTarget);
 
         // After click target: hide target, update score, 
         // and show new target
@@ -95,9 +99,10 @@ var controller = (function(UICtrl, dataCtrl) {
             var newScore = dataCtrl.updateScore();
             UICtrl.displayScore(newScore);
             UICtrl.hideTarget();
+            UICtrl.displayFeedback();
 
             // Get random time delay and show new target
-            var timeNoTarget = dataCtrl.getRand(0, 3000);
+            var timeNoTarget = dataCtrl.getRand(0, 5000);
             var timeoutID = window.setTimeout(showNewTarget, timeNoTarget);
         });
 
@@ -142,7 +147,7 @@ var controller = (function(UICtrl, dataCtrl) {
         var yMove = dataCtrl.getRand(-5, 5);
 
         // Get random scale size
-        var scaleSize = (dataCtrl.getRand(4, 9) / 10);
+        var scaleSize = (dataCtrl.getRand(3, 9) / 10);
         console.log(xLoc + ", " + yLoc + " / delay: " + animDelay);
         console.log("scaleSize: " + scaleSize + " Move: " + xMove + ", " + yMove);
         
@@ -154,7 +159,7 @@ var controller = (function(UICtrl, dataCtrl) {
     // Set up timer for showing the Play Again button
     var intervalID;
     var timeoutInMS = 3000;
-    var active;
+    var active = true;
 
     // Reset timer
     function resetTimer() {
@@ -163,18 +168,18 @@ var controller = (function(UICtrl, dataCtrl) {
         active = true;
     };
 
+    // Set timer  
     function startTimer() {
         intervalID = window.setInterval(isActive, timeoutInMS);
-        var test = timeoutInMS / 100;
-        console.log("start timer");
     };
     
+    // On timer, if user inactive, display play button
     function isActive() {
-        active = false;
         if (!active) {
-            console.log('active is false');
-            UICtrl.displayPlayBtn();
+            return false;
         }
+        UICtrl.displayPlayBtn();
+        active = false;
     }
 
 
