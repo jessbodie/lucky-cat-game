@@ -123,7 +123,7 @@ var controller = (function(UICtrl, dataCtrl) {
         UICtrl.displayFeedback();
 
         // Get random time delay and show new target
-        var timeNoTarget = dataCtrl.getRand(300, 1000);
+        var timeNoTarget = dataCtrl.getRand(500, 1000);
         var timeoutID = window.setTimeout(showNewTarget, timeNoTarget);
 
         // To account for edge cases, hide play button
@@ -138,6 +138,7 @@ var controller = (function(UICtrl, dataCtrl) {
 
         // Hide replay button
         UICtrl.hidePlayBtn();
+        waiting = false;
 
         // Show new target
         showNewTarget();
@@ -171,21 +172,40 @@ var controller = (function(UICtrl, dataCtrl) {
         console.log("x, y: " + xLoc + ", " + yLoc + " / delay: " + animDelay + "/ scaleSize: " + scaleSize + " Move: " + xMove + ", " + yMove);
 
     };
+
+    // Flag for if user is active
+    var active = true;
+    // Flag for if user is waiting on new game
+    var waiting = false;   
+    
+    // Set up timer for showing new targets
+    var newTargetInterval;
+    var newTargetTimeout = 5000;
+
+    // Set timer for showing new targets 
+    function newTargetTimer() {
+        newTargetInterval = window.setInterval(function() {
+            if ((active != false) & (waiting === false)){
+                showNewTarget();
+            } else if (active === false) {
+                window.clearInterval(newTargetTimeout);
+            }
+        }, newTargetTimeout);
+    };
     
     // Set up timer for showing the Play Again button
     var inactiveInterval;
     var inactiveTimeout = 5000;
-    var active = true;
 
     // Reset timer
     function resetTimer() {
         window.clearInterval(inactiveInterval);
-        startTimer();
+        isActiveTimer();
         active = true;
     };
 
     // Set timer  
-    function startTimer() {
+    function isActiveTimer() {
         inactiveInterval = window.setInterval(isActive, inactiveTimeout);
     };
     
@@ -196,13 +216,15 @@ var controller = (function(UICtrl, dataCtrl) {
         }
         UICtrl.displayPlayBtn();
         active = false;
+        waiting = true;
     }
 
 
     return {
         init: function() {
             setupEventListeners();
-            startTimer();
+            isActiveTimer();
+            newTargetTimer();
             }
 
     }

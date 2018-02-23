@@ -5,13 +5,18 @@
     filter: drop-shadow( 2px 2px 2px rgba($color-black, .6) );
     position: absolute;
 
-    &--cat {
-        transform: scale(1.5);
-
+    img {
+        border: none;
+        background: none;
     }
 
     &:hover {
         cursor: pointer;
+    }
+
+    &--cat {
+        transform: scale(1.5);
+
     }
 
     &--wreath {
@@ -45,7 +50,7 @@
         display: inline-block;
         position: relative;
         z-index: $z-index-target;
-        opacity: 0.1;
+        opacity: 0;
         transition-property: opacity, transform;
         transition-timing-function: ease-in-out;
     }
