@@ -21,7 +21,7 @@
   "devDependencies": {
     "autoprefixer": "^8.0.0",
     "node-sass": "^4.7.2",
-    "npm-run-all": "^5.0.0",
+    "npm-run-all": "4.1.2",
     "postcss-cli": "^5.0.0"
   }
 }
