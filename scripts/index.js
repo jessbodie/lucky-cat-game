@@ -68,7 +68,7 @@ var UIController = (function() {
         displayFeedback: function() {
             var shamrocksPic = document.createElement("img");
             shamrocksPic.src = "img/3-shamrocks.svg";
-            shamrocksPic.alt = "Good catch, shamrocks show points scored!"
+            shamrocksPic.alt = "Good catch, points scored!"
             shamrocksPic.id = "shamrock-feedback";
             var visualFeedback = document.getElementById("feedback").appendChild(shamrocksPic);
             // When animation ends, removed shamrock element
@@ -98,33 +98,11 @@ var controller = (function(UICtrl, dataCtrl) {
         // Load new target on DOM load
         window.addEventListener("load", showNewTarget);
 
-        // After click target: hide target, update score, 
-        // and show new target
-        document.getElementById("target").addEventListener("click", function(){
-            // Update score and display score
-            var newScore = dataCtrl.updateScore();
-            UICtrl.displayScore(newScore);
-            UICtrl.hideTarget();
-            UICtrl.displayFeedback();
+        // After click target: process the success
+        document.getElementById("target").addEventListener("click", processSuccess);
 
-            // Get random time delay and show new target
-            var timeNoTarget = dataCtrl.getRand(0, 5000);
-            var timeoutID = window.setTimeout(showNewTarget, timeNoTarget);
-        });
-
-        // After click play again button: reset score and show new target
-        document.getElementById("play-btn").addEventListener("click", function() {
-
-            // Reset score and display score
-            var newScore = dataCtrl.resetScore();
-            UICtrl.displayScore(newScore);
-            UICtrl.hidePlayBtn();
-
-            // Show new target
-            showNewTarget();
-        });
-
-
+        // After click play again button: reset game
+        document.getElementById("play-btn").addEventListener("click", resetGame);
 
         // Reset timer on user activity
         document.addEventListener("mousemove", resetTimer, false);
@@ -132,6 +110,37 @@ var controller = (function(UICtrl, dataCtrl) {
         document.addEventListener("keypress", resetTimer, false);
         document.addEventListener("touchmove", resetTimer, false);
 
+    }
+
+    // On success: hide target, update score, show new target
+    function processSuccess() {
+        // Hide target
+        UICtrl.hideTarget();
+
+        // Update score and display score
+        var newScore = dataCtrl.updateScore();
+        UICtrl.displayScore(newScore);
+        UICtrl.displayFeedback();
+
+        // Get random time delay and show new target
+        var timeNoTarget = dataCtrl.getRand(300, 1000);
+        var timeoutID = window.setTimeout(showNewTarget, timeNoTarget);
+
+        // To account for edge cases, hide play button
+        UICtrl.hidePlayBtn();
+    }
+    
+    // Reset score, hide play button,  show new target
+    function resetGame() {
+        // Reset score and display score
+        var newScore = dataCtrl.resetScore();
+        UICtrl.displayScore(newScore);
+
+        // Hide replay button
+        UICtrl.hidePlayBtn();
+
+        // Show new target
+        showNewTarget();
     }
 
     // Display target in random location on canvas
@@ -145,10 +154,10 @@ var controller = (function(UICtrl, dataCtrl) {
         var yLoc = dataCtrl.getRand(0, 94);
         
         // Get random animation delay time, ms
-        var animDelay = dataCtrl.getRand(400, 1100);
+        var animDelay = dataCtrl.getRand(300, 700);
 
         // Get random animation duration time, ms
-        var animDuration = dataCtrl.getRand(500, 1000);
+        var animDuration = dataCtrl.getRand(300, 900);
 
         // get random movement in rem
         var xMove = dataCtrl.getRand(-5, 5);
@@ -156,29 +165,28 @@ var controller = (function(UICtrl, dataCtrl) {
 
         // Get random scale size
         var scaleSize = (dataCtrl.getRand(2, 9) / 10);
-        console.log(xLoc + ", " + yLoc + " / delay: " + animDelay);
-        console.log("scaleSize: " + scaleSize + " Move: " + xMove + ", " + yMove);
         
         // Display new target with random location and animation factors
         UICtrl.displayTarget(xLoc, yLoc, animDelay, animDuration, xMove, yMove, scaleSize);
+        console.log("x, y: " + xLoc + ", " + yLoc + " / delay: " + animDelay + "/ scaleSize: " + scaleSize + " Move: " + xMove + ", " + yMove);
 
     };
     
     // Set up timer for showing the Play Again button
-    var intervalID;
-    var timeoutInMS = 3000;
+    var inactiveInterval;
+    var inactiveTimeout = 5000;
     var active = true;
 
     // Reset timer
     function resetTimer() {
-        window.clearInterval(intervalID);
+        window.clearInterval(inactiveInterval);
         startTimer();
         active = true;
     };
 
     // Set timer  
     function startTimer() {
-        intervalID = window.setInterval(isActive, timeoutInMS);
+        inactiveInterval = window.setInterval(isActive, inactiveTimeout);
     };
     
     // On timer, if user inactive, display play button

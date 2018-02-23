@@ -25,10 +25,11 @@
         width: 200%;
         height: 200%;
 
+        &:focus,
         &:hover, 
-        &:active,
-        &:focus {
+        &:active {
             opacity: 1;
+            transition: opacity 300ms ease-in;
         }
     }
 
