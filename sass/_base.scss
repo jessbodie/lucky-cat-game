@@ -9,6 +9,7 @@
 
 html {
   box-sizing: border-box;
+  font-size: calc(6.5px + .66vw);
   // font-size: 62.5%; // 1rem = 10px
 
 
@@ -19,5 +20,30 @@ body {
     color: $color-black;
       margin: 0 auto;
     font-family: 'Poppins', sans-serif;
+    color: $color-black;
   }
+
+footer {
+    grid-column: interior-left / interior-right;
+    grid-row: interior-end / bottom-end;
+    position: relative;
+  }
+  
+.footer {
+  font-size: .75rem;
+  color: $color-black;
+  position: absolute;
+  bottom: 2px;
+  width: 100%;
+  text-align: center;
+  z-index: $z-index-target;
+  opacity: .6; 
+
+  a {
+    cursor: pointer;
+    color: $color-green-dark;
+    text-decoration: none;
+    }
+
+  }  
 }  

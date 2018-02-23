@@ -16,15 +16,15 @@
     &__score {
         grid-row: score-start / score-end;
         grid-column: 1 / -1;
-        width: 6rem;
-        font-size: 2.5rem;
+        width: 4rem;
+        font-size: 1.8rem;
         background-color: $color-gray;
-        padding: 0rem 1rem;
-        margin: 0.75rem 2rem;
+        padding: 0rem .6rem;
+        margin: 0.75rem 1rem .5rem 1rem;
         color: $color-black;
         border-radius: 2px;
         text-align: right;
-        box-shadow: 2px 2px 2px 1px rgba($color-black, .2);
+        box-shadow: 1px 1px 1px 1px rgba($color-black, .2);
     }    
 
     &__pic {
@@ -34,7 +34,7 @@
         filter: drop-shadow( 2px 2px 2px rgba($color-black, .6) );
 
         svg {
-            width: 6rem;
+            width: 4rem;
             height: auto;
 
         }

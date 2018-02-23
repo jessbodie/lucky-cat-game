@@ -1,10 +1,9 @@
 // DIMENSIONS
-$canvas-width: 100vw;
-$canvas-height: 50vw;
-$canvas-width-interior: calc(#{$canvas-width - 3vw});
-$canvas-height-interior: 94vw;
+$status-width: 6rem;
+$canvas-width: calc(100vw - #{$status-width});
+$canvas-height: 100%;
 
-$max-move: 5rem;
+$max-move: 4rem;
 
 // Z-INDEX
 $z-index-target: 100;
