@@ -4,8 +4,33 @@
     height: auto;
     filter: drop-shadow( 2px 2px 2px rgba($color-black, .6) );
     position: absolute;
-    padding: .5rem;
 
+    &--cat {
+        transform: scale(1.5);
+
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &--wreath {
+        display: inline-block;
+        position: relative;
+        z-index: $z-index-feedback;
+        opacity: 0;
+        position: absolute;
+        top: -2.5rem;
+        left: -2rem;
+        width: 200%;
+        height: 200%;
+
+        &:hover, 
+        &:active,
+        &:focus {
+            opacity: 1;
+        }
+    }
 
     &--start {
         display: inline-block;
@@ -13,26 +38,15 @@
         z-index: $z-index-target;
         opacity: 1;
         transform: scale(1.2) translate3d(0, 0, 0);
-
-        &:hover {
-            cursor: pointer;
-        }
-
-
     }
 
     &--end {
         display: inline-block;
         position: relative;
         z-index: $z-index-target;
-        opacity: 0.05;
-
+        opacity: 0.1;
         transition-property: opacity, transform;
         transition-timing-function: ease-in-out;
-
-
-        &:hover {
-            cursor: pointer;
-        }
     }
+
 }
