@@ -6,7 +6,31 @@
     position: absolute;
 
     img {
-        border: none;
+        draggable: false;
+        // Prevent image SVG from being selected (which caused weird background)
+        // Works on Chrome, not Firefox
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+        standard-user-select: none;
+    }
+
+
+    // TODO DEBUG FIREFOX SELECTION HIGHLIGHTING
+    &::-moz-selection {
+        background: transparent;
+      }
+    img::-moz-selection, 
+    svg::-moz-selection {
+        background: transparent;
+    }
+
+    img::selection, 
+    svg::selection {
         background: none;
     }
 
@@ -17,6 +41,11 @@
     &--cat {
         transform: scale(1.5);
 
+        // TODO DEBUG FIREFOX SELECTION HIGHLIGHTING
+        &::-moz-selection {
+            background: transparent;
+          }
+    
     }
 
     &--wreath {

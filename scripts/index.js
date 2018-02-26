@@ -95,54 +95,78 @@ var controller = (function(UICtrl, dataCtrl) {
 
     // Event listeners
     var setupEventListeners = function() {
-        // Load new target on DOM load
-        window.addEventListener("load", showNewTarget);
-
         // After click target: process the success
         document.getElementById("target").addEventListener("click", processSuccess);
 
         // After click play again button: reset game
         document.getElementById("play-btn").addEventListener("click", resetGame);
 
-        // Reset timer on user activity
-        document.addEventListener("mousemove", resetTimer, false);
-        document.addEventListener("mousedown", resetTimer, false);
-        document.addEventListener("keypress", resetTimer, false);
-        document.addEventListener("touchmove", resetTimer, false);
+        // Full screen toggle
+        document.getElementById("fullscreen-toggle").addEventListener("click", function() {
+            console.log("function");
+            var doc = window.document;
+            var docEl = doc.documentElement;
+          
+            var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+            var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+          
+            if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+              requestFullScreen.call(docEl);
+            }
+            else {
+              cancelFullScreen.call(doc);
+            }
+    }, false);  
 
-    }
 
-    // On success: hide target, update score, show new target
-    function processSuccess() {
-        // Hide target
-        UICtrl.hideTarget();
+        ///////////////////////////////////
+        // TODO Double click selects target
+        // Related to DBLCLICK bug in Firefox?   
+        // https://github.com/mozilla/geckodriver/issues/661
+        // document.getElementById("target").addEventListener("dblclick", 
+        // function() {
+        //     console.log('dblclick');
+            // if(document.selection && document.selection.empty) {
+            //     document.selection.empty();
+            // } else if(window.getSelection) {
+            //     var sel = window.getSelection();
+            //     sel.removeAllRanges();
+            // }
+        // }, false);
+        // document.getElementById("target").addEventListener("selectstart", function() {
+        //     console.log('Selection started'); 
+        //     return false;
+        //   }, false);
 
-        // Update score and display score
-        var newScore = dataCtrl.updateScore();
-        UICtrl.displayScore(newScore);
-        UICtrl.displayFeedback();
 
-        // Get random time delay and show new target
-        var timeNoTarget = dataCtrl.getRand(500, 1000);
-        var timeoutID = window.setTimeout(showNewTarget, timeNoTarget);
+    };
 
-        // To account for edge cases, hide play button
-        UICtrl.hidePlayBtn();
-    }
-    
-    // Reset score, hide play button,  show new target
-    function resetGame() {
-        // Reset score and display score
-        var newScore = dataCtrl.resetScore();
-        UICtrl.displayScore(newScore);
+    // Set timer for showing new targets 
+    // Target Interval ID, must be global
+    var newTargetInterval;
+    function newTargetTimer(go) {
+        var newTargetTimeout = 3000;
+        if (go === true) {
+            newTargetInterval = window.setInterval(showNewTarget, newTargetTimeout);
+        } else if (go === false) {
+            window.clearInterval(newTargetInterval);
+            // return;
+        }
+    };
 
-        // Hide replay button
-        UICtrl.hidePlayBtn();
-        waiting = false;
-
-        // Show new target
-        showNewTarget();
-    }
+    // On timer, end game 
+    var gameTimer = function() {
+        // Length of time for each game 
+        var gameTimeMS = 200000;
+        // When game ends, show replay button, hide target, 
+        // clear timer, stop new targets
+        var gameTimeout = window.setTimeout(function() {
+                UICtrl.displayPlayBtn();
+                UICtrl.hideTarget();
+                window.clearTimeout(gameTimeout);
+                newTargetTimer(false);
+            }, gameTimeMS);
+    };
 
     // Display target in random location on canvas
     function showNewTarget() {
@@ -171,60 +195,44 @@ var controller = (function(UICtrl, dataCtrl) {
         UICtrl.displayTarget(xLoc, yLoc, animDelay, animDuration, xMove, yMove, scaleSize);
         console.log("x, y: " + xLoc + ", " + yLoc + " / delay: " + animDelay + "/ scaleSize: " + scaleSize + " Move: " + xMove + ", " + yMove);
 
-    };
-
-    // Flag for if user is active
-    var active = true;
-    // Flag for if user is waiting on new game
-    var waiting = false;   
+    }
     
-    // Set up timer for showing new targets
-    var newTargetInterval;
-    var newTargetTimeout = 5000;
+    // On success: hide target, update score, show new target
+    function processSuccess() {
+        // Hide target
+        UICtrl.hideTarget();
 
-    // Set timer for showing new targets 
-    function newTargetTimer() {
-        newTargetInterval = window.setInterval(function() {
-            if ((active != false) & (waiting === false)){
-                showNewTarget();
-            } else if (active === false) {
-                window.clearInterval(newTargetTimeout);
-            }
-        }, newTargetTimeout);
-    };
+        // Update score and display score
+        var newScore = dataCtrl.updateScore();
+        UICtrl.displayScore(newScore);
+        UICtrl.displayFeedback();
+
+        // To account for edge cases, hide play button
+        UICtrl.hidePlayBtn();
+    }
     
-    // Set up timer for showing the Play Again button
-    var inactiveInterval;
-    var inactiveTimeout = 5000;
+    // Reset score, hide play button,  show new target
+    function resetGame() {
+        // Reset score and display score
+        var newScore = dataCtrl.resetScore();
+        UICtrl.displayScore(newScore);
 
-    // Reset timer
-    function resetTimer() {
-        window.clearInterval(inactiveInterval);
-        isActiveTimer();
-        active = true;
-    };
+        // Hide replay button
+        UICtrl.hidePlayBtn();
 
-    // Set timer  
-    function isActiveTimer() {
-        inactiveInterval = window.setInterval(isActive, inactiveTimeout);
-    };
-    
-    // On timer, if user inactive, display play button
-    function isActive() {
-        if (!active) {
-            return false;
-        }
-        UICtrl.displayPlayBtn();
-        active = false;
-        waiting = true;
+        // Restart game timer
+        gameTimer();
+
+        // Start showing new targets
+        newTargetTimer(true);
     }
 
 
     return {
         init: function() {
             setupEventListeners();
-            isActiveTimer();
-            newTargetTimer();
+            gameTimer();
+            newTargetTimer(true);
             }
 
     }
