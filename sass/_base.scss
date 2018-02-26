@@ -11,7 +11,7 @@ html {
   box-sizing: border-box;
   font-size: calc(6.5px + .66vw);
   // font-size: 62.5%; // 1rem = 10px
-
+}
 
 body {
     // min-width: $app-min-width;
@@ -21,11 +21,40 @@ body {
     margin: 0 auto;
     font-family: 'Poppins', sans-serif;
     color: $color-black;
+    background: linear-gradient(90deg, $color-green-dull 0%, 
+    $color-green-lime 50%, $color-green-dull 100%);  
+
+
   }
 
+.fullscreen {
+  grid-row: top-start / interior-top;
+  grid-column: status-start / right-end;
+  z-index: $z-index-fullscreen;
+  justify-self: end;
+  position: relative;
+
+  &__btn {
+    position: relative;
+    width: 3rem;
+    height: 1.7rem;
+    opacity: .3;
+    margin: .5rem .1rem;
+    z-index: $z-index-fullscreen;
+    cursor: pointer;
+
+    &:hover, 
+    &:focus, 
+    &:active {
+      filter: drop-shadow( 2px 2px 3px rgba($color-black, 1) );
+    }
+  }
+
+}  
+
 footer {
-    grid-column: interior-left / interior-right;
     grid-row: interior-end / bottom-end;
+    grid-column: interior-left / interior-right;
     position: relative;
   }
   
@@ -46,4 +75,4 @@ footer {
     }
 
   }  
-}  
+  

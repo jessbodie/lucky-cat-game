@@ -9,15 +9,12 @@
         [interior-left] 1fr 
         [interior-right] $max-move 
         [status-start] $status-width [right-end];
-    background: linear-gradient(90deg, $color-green-dull 0%, 
-        $color-green-lime 50%, $color-green-dull 100%);  
     position: relative;
     opacity: .99;    
     z-index: $z-index-back;
     width: 100vw;
     height: 100vh;
     max-height: 50vw;
-    overflow-y: auto;
+    overflow: hidden;
 
-    
 }
