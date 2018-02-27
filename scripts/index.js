@@ -116,9 +116,7 @@ var UIController = (function() {
                     + mid + ' 1 ' 
                     +  x  + ' ' 
                     +  y  + ' z';
-            //[x,y].forEach(function( d ){
-            //  d = Math.round( d * 1e3 ) / 1e3;
-            //});
+            //[x,y].forEach(function( d ){ d = Math.round( d * 1e3 ) / 1e3; });
             
             loader.setAttribute( 'd', anim );
             border.setAttribute( 'd', anim );
