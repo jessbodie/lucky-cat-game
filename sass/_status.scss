@@ -61,9 +61,12 @@
         left: 0;
         display: flex;
         align-items: middle;
+        // border: 1px solid red;
+        width: auto;
+        height: 4rem;
 
         img {
-            width: 3.5rem;
+            width: 3.4rem;
             height: auto;
             display: block;
 
@@ -79,8 +82,9 @@
         left: 0;
         z-index: 900;
         width: auto;
-        height: 100%;
+        height: 4rem;
         display: block;
+        // border: 2px solid orange;
         
         img, svg {
             display: block;
