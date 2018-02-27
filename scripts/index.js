@@ -66,7 +66,7 @@ var UIController = (function() {
         },
 
         hideTarget: function() {
-            document.getElementById("target").setAttribute("style", "display: none;")
+            document.getElementById("target").setAttribute("style", "display: none;");
         },
 
         // Show shamrocks above score area as feedback for points earned
@@ -93,9 +93,12 @@ var UIController = (function() {
         }, 
 
         // Show the pie timer
-        // Credit Anders Grimsrud for the SVG Pie Timer
-        // https://codepen.io/agrimsrud/pen/EmCoa
         displayTimer: function(time) {
+
+            document.getElementById("timer").setAttribute("style", "display: block;");
+
+            // Credit Anders Grimsrud for the SVG Pie Timer
+            // https://codepen.io/agrimsrud/pen/EmCoa
             var loader = document.getElementById('timer-loader')
             , border = document.getElementById('timer-border')
             , α = 0
@@ -121,9 +124,11 @@ var UIController = (function() {
             border.setAttribute( 'd', anim );
             }, t);
 
-           var timerUIStop = window.setTimeout(function() {
-            window.clearInterval(timerUIInterval);
-           }, time);
+            // Stop the timer after game time
+            var timerUIStop = window.setTimeout(function() {
+                window.clearInterval(timerUIInterval);
+                document.getElementById("timer").setAttribute("style", "display: none;");
+            }, time);
         },
 
         // Toggle to let web page go full screen
@@ -140,7 +145,6 @@ var UIController = (function() {
             else {
               cancelFullScreen.call(doc);
             }
-
         }
     }
 })();
