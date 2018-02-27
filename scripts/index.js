@@ -8,6 +8,7 @@ var score = 0;
 var increment = 10;
 
 // Level
+var gameTimeMS = 60000;
 
 // Target location
 
@@ -20,6 +21,10 @@ var increment = 10;
             max = Math.ceil(max);
             return Math.floor(Math.random() * (max - min)) + min; 
         },
+
+        getGameTimeMS: function() {
+            return gameTimeMS;
+        }, 
 
         updateScore: function() {
             score = score + increment;
@@ -85,6 +90,57 @@ var UIController = (function() {
         hidePlayBtn: function() {
             document.getElementById("play-btn").setAttribute("style", 
                 "display: none;")
+        }, 
+
+        // Show the pie timer
+        // Credit Anders Grimsrud for the SVG Pie Timer
+        // https://codepen.io/agrimsrud/pen/EmCoa
+        displayTimer: function(time) {
+            var loader = document.getElementById('timer-loader')
+            , border = document.getElementById('timer-border')
+            , α = 0
+            , π = Math.PI
+            , t = (time / 360);    // 60sec / 360deg
+
+            var timerUIInterval = window.setInterval(function() {
+            α--;
+            α %= -360;
+            var r = ( α * π / 180 )
+                , x = Math.sin( r ) * 125
+                , y = Math.cos( r ) * - 125
+                , mid = ( α > -180 ) ? 1 : 0
+                , anim = 'M 0 0 v -125 A 125 125 1 ' 
+                    + mid + ' 1 ' 
+                    +  x  + ' ' 
+                    +  y  + ' z';
+            //[x,y].forEach(function( d ){
+            //  d = Math.round( d * 1e3 ) / 1e3;
+            //});
+            
+            loader.setAttribute( 'd', anim );
+            border.setAttribute( 'd', anim );
+            }, t);
+
+           var timerUIStop = window.setTimeout(function() {
+            window.clearInterval(timerUIInterval);
+           }, time);
+        },
+
+        // Toggle to let web page go full screen
+        fullScreenToggle: function() {
+            var doc = window.document;
+            var docEl = doc.documentElement;
+          
+            var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+            var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+          
+            if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+              requestFullScreen.call(docEl);
+            }
+            else {
+              cancelFullScreen.call(doc);
+            }
+
         }
     }
 })();
@@ -99,25 +155,10 @@ var controller = (function(UICtrl, dataCtrl) {
         document.getElementById("target").addEventListener("click", processSuccess);
 
         // After click play again button: reset game
-        document.getElementById("play-btn").addEventListener("click", resetGame);
+        document.getElementById("play-btn").addEventListener("click", startGame);
 
         // Full screen toggle
-        document.getElementById("fullscreen-toggle").addEventListener("click", function() {
-            console.log("function");
-            var doc = window.document;
-            var docEl = doc.documentElement;
-          
-            var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-            var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-          
-            if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-              requestFullScreen.call(docEl);
-            }
-            else {
-              cancelFullScreen.call(doc);
-            }
-    }, false);  
-
+        document.getElementById("fullscreen-toggle").addEventListener("click", UICtrl.fullScreenToggle, false);  
 
         ///////////////////////////////////
         // TODO Double click selects target
@@ -145,7 +186,7 @@ var controller = (function(UICtrl, dataCtrl) {
     // Target Interval ID, must be global
     var newTargetInterval;
     function newTargetTimer(go) {
-        var newTargetTimeout = 3000;
+        var newTargetTimeout = 2500;
         if (go === true) {
             newTargetInterval = window.setInterval(showNewTarget, newTargetTimeout);
         } else if (go === false) {
@@ -155,17 +196,17 @@ var controller = (function(UICtrl, dataCtrl) {
     };
 
     // On timer, end game 
-    var gameTimer = function() {
-        // Length of time for each game 
-        var gameTimeMS = 200000;
+    var gameTimer = function(time) {
+        // Display pie chart timer 
+        UICtrl.displayTimer(time);
         // When game ends, show replay button, hide target, 
         // clear timer, stop new targets
         var gameTimeout = window.setTimeout(function() {
-                UICtrl.displayPlayBtn();
-                UICtrl.hideTarget();
-                window.clearTimeout(gameTimeout);
-                newTargetTimer(false);
-            }, gameTimeMS);
+            UICtrl.displayPlayBtn();
+            UICtrl.hideTarget();
+            window.clearTimeout(gameTimeout);
+            newTargetTimer(false);
+        }, time);
     };
 
     // Display target in random location on canvas
@@ -211,8 +252,9 @@ var controller = (function(UICtrl, dataCtrl) {
         UICtrl.hidePlayBtn();
     }
     
+
     // Reset score, hide play button,  show new target
-    function resetGame() {
+    function startGame() {
         // Reset score and display score
         var newScore = dataCtrl.resetScore();
         UICtrl.displayScore(newScore);
@@ -221,7 +263,7 @@ var controller = (function(UICtrl, dataCtrl) {
         UICtrl.hidePlayBtn();
 
         // Restart game timer
-        gameTimer();
+        gameTimer(dataCtrl.getGameTimeMS());
 
         // Start showing new targets
         newTargetTimer(true);
@@ -231,10 +273,8 @@ var controller = (function(UICtrl, dataCtrl) {
     return {
         init: function() {
             setupEventListeners();
-            gameTimer();
-            newTargetTimer(true);
-            }
-
+            startGame();
+        }
     }
 })(UIController, dataController);
 
