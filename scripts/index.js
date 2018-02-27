@@ -66,7 +66,7 @@ var UIController = (function() {
         },
 
         hideTarget: function() {
-            document.getElementById("target").setAttribute("style", "display: none;")
+            document.getElementById("target").setAttribute("style", "display: none;");
         },
 
         // Show shamrocks above score area as feedback for points earned
@@ -93,9 +93,12 @@ var UIController = (function() {
         }, 
 
         // Show the pie timer
-        // Credit Anders Grimsrud for the SVG Pie Timer
-        // https://codepen.io/agrimsrud/pen/EmCoa
         displayTimer: function(time) {
+
+            document.getElementById("timer").setAttribute("style", "display: block;");
+
+            // Credit Anders Grimsrud for the SVG Pie Timer
+            // https://codepen.io/agrimsrud/pen/EmCoa
             var loader = document.getElementById('timer-loader')
             , border = document.getElementById('timer-border')
             , α = 0
@@ -113,17 +116,17 @@ var UIController = (function() {
                     + mid + ' 1 ' 
                     +  x  + ' ' 
                     +  y  + ' z';
-            //[x,y].forEach(function( d ){
-            //  d = Math.round( d * 1e3 ) / 1e3;
-            //});
+            //[x,y].forEach(function( d ){ d = Math.round( d * 1e3 ) / 1e3; });
             
             loader.setAttribute( 'd', anim );
             border.setAttribute( 'd', anim );
             }, t);
 
-           var timerUIStop = window.setTimeout(function() {
-            window.clearInterval(timerUIInterval);
-           }, time);
+            // Stop the timer after game time
+            var timerUIStop = window.setTimeout(function() {
+                window.clearInterval(timerUIInterval);
+                document.getElementById("timer").setAttribute("style", "display: none;");
+            }, time);
         },
 
         // Toggle to let web page go full screen
@@ -140,7 +143,6 @@ var UIController = (function() {
             else {
               cancelFullScreen.call(doc);
             }
-
         }
     }
 })();
