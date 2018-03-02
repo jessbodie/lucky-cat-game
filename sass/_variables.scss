@@ -6,13 +6,26 @@ $canvas-height: 100%;
 $max-move: 4rem;
 
 // Z-INDEX
-$z-index-target: 100;
+$z-index-target: 300;
 $z-index-back: 0;
-$z-index-canvas: 1;
+$z-index-back-elements: 5;
+$z-index-canvas: 10;
 $z-index-feedback: 50;
 $z-index-fullscreen: 75;
+$z-index-splash: 150;
 
 
+// ANIMATION TIMES
+$splash-dur: 8s;
+$splash-cat-big: 2s;
+$splash-count-dur: .7s;
+$splash-pot-dur: calc(#{$splash-dur} - 4.5s);
+$splash-pot-del: calc(#{$splash-cat-big} + 1s);
+$splash-little-del: calc(#{$splash-pot-del} + (#{$splash-pot-dur} / 2);
+//$splash-little-dur: 1.5s;
+$splash-text-dur: 4s;
+$splash-status-del: calc(#{$splash-pot-del} + #{$splash-pot-dur});
+$splash-quick-dur: 1s;
 
 
 // COLOR

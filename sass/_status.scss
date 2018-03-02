@@ -49,8 +49,13 @@
         border-radius: 2px;
         text-align: right;
         box-shadow: 1px 1px 1px 1px rgba($color-black, .2);
+        z-index: $z-index-back-elements;
+        opacity: 0;
+        animation: zoomIn $splash-quick-dur forwards 
+            calc(#{$splash-status-del} + .6s);
     }    
 
+    // Pot o Gold
     &__pic {
         grid-row: pot-start / pot-end;
         grid-column: 1 / -1;
@@ -62,14 +67,31 @@
         display: flex;
         align-items: middle;
         // border: 1px solid red;
-        width: auto;
-        height: 4rem;
+        // width: auto;
+        // height: 4rem;
+        opacity: 0;
+        z-index: $z-index-back-elements;
+        animation: $splash-pot-dur potOGold $splash-pot-del forwards;
+
 
         img {
             width: 3.4rem;
             height: auto;
             display: block;
+            position: relative;
+            z-index: $z-index-back-elements;
+        }
 
+        &:after {
+            content: url(../img/lucky_cat_sm.svg);
+            position: absolute;
+            top: -1rem;
+            left: 1rem;
+            display: block;
+            z-index: $z-index-back;
+            opacity: 0;
+            animation: littleCat $splash-quick-dur $splash-little-del;
+            // animation: littleCat 10s 2s;
         }
     }
 
@@ -80,7 +102,7 @@
         position: relative;
         top: 0;
         left: 0;
-        z-index: 900;
+        z-index: $z-index-canvas;
         width: auto;
         height: 4rem;
         display: block;
@@ -102,28 +124,38 @@
         width: 100%;
         padding: 0rem 1rem;
         text-align: center;
+        z-index: $z-index-back-elements;
+        opacity: 0;
+        animation: zoomIn $splash-quick-dur forwards 
+            calc(#{$splash-status-del} + .3s);
     }  
     
     &__top--green {
-        grid-row: status-top / feedback-start;
+        grid-row: status-top / status-bottom;
         grid-column: 1 / span 1;
         background: linear-gradient(0deg, rgba($color-green-dark, 0) 10%, 
             $color-green-dark 60%, rgba($color-green, .9) 100%);  
+        z-index: $z-index-back;    
+        @include rainbowAnimation;
     }
 
     &__top--blue {
-        grid-row: status-top / feedback-start;
+        grid-row: status-top / status-bottom;
         grid-column: 2 / span 1;
         background: linear-gradient(0deg, rgba($color-blue-dark, 0) 5%, 
             $color-blue-dark 60%, rgba($color-blue, .9) 100%);  
-    }
+        z-index: $z-index-back;    
+        @include rainbowAnimation;
+        }
 
     &__top--purple {
-        grid-row: status-top / feedback-start;
+        grid-row: status-top / status-bottom;
         grid-column: 3 / span 1;
         background: linear-gradient(0deg, rgba($color-purple-dark, 0) 0%, 
             $color-purple-dark 60%, rgba($color-purple, .9) 100%);  
-    }
+        z-index: $z-index-back;    
+        @include rainbowAnimation;
+        }
 
     
     &__bot--green {
@@ -131,21 +163,27 @@
         grid-column: 1 / span 1;
         background: linear-gradient(0deg, rgba($color-green-dark, 1) 0%, 
             rgba($color-green, 0) 100%);  
-    }
+        opacity: 0;
+        animation: zoomIn $splash-quick-dur forwards $splash-status-del;
+        }
 
     &__bot--blue {
         grid-row: level-end / status-bottom;
         grid-column: 2 / span 1;
         background: linear-gradient(0deg, rgba($color-blue-dark, 1) 0%, 
             rgba($color-blue, 0) 100%);  
-    }
+        opacity: 0;
+        animation: zoomIn $splash-quick-dur forwards $splash-status-del;
+        }
 
     &__bot--purple {
         grid-row: level-end / status-bottom;
         grid-column: 3 / span 1;
         background: linear-gradient(0deg, rgba($color-purple-dark, 1) 0%, 
             rgba($color-purple, 0) 100%);  
-    }
+        opacity: 0;
+        animation: zoomIn $splash-quick-dur forwards $splash-status-del;
+        }
 
 }
 
