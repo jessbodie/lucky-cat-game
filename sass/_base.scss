@@ -36,10 +36,10 @@ body {
 
   &__btn {
     position: relative;
-    width: 3rem;
-    height: 1.7rem;
+    width: 3.2rem;
+    height: 2.5rem;
     opacity: .3;
-    margin: .5rem .1rem;
+    margin: .5rem .3rem;
     z-index: $z-index-fullscreen;
     cursor: pointer;
 
@@ -65,14 +65,17 @@ footer {
   bottom: 2px;
   width: 100%;
   text-align: center;
-  z-index: $z-index-target;
+  z-index: $z-index-back-elements;
   opacity: .6; 
 
   a {
     cursor: pointer;
     color: $color-green-dark;
     text-decoration: none;
-    }
+    position: relative;
+    opacity: .99;
+    z-index: $z-index-back-elements;
+  }
 
   }  
   

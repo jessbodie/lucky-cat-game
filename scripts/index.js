@@ -153,6 +153,14 @@ var controller = (function(UICtrl, dataCtrl) {
 
     // Event listeners
     var setupEventListeners = function() {
+        // When animation ends, start game, hide animatino div
+        document.getElementById("anim-last").addEventListener("animationend", function() {
+            startGame();
+            document.getElementById("splash").setAttribute("style", "display: none;")
+        });
+        // DEBUG
+        // document.addEventListener("DOMContentLoaded", startGame);
+
         // After click target: process the success
         document.getElementById("target").addEventListener("click", processSuccess);
 
@@ -275,7 +283,6 @@ var controller = (function(UICtrl, dataCtrl) {
     return {
         init: function() {
             setupEventListeners();
-            startGame();
         }
     }
 })(UIController, dataController);
