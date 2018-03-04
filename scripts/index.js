@@ -8,7 +8,7 @@ var score = 0;
 var increment = 10;
 
 // Level
-var gameTimeMS = 60000;
+var gameTimeMS = 20000;
 
 // Target location
 
@@ -82,14 +82,56 @@ var UIController = (function() {
             });
         },
 
+        /////////////////////////////////////////////////
+        ////////////////////////////////////////////////
+        // Create and display Start Play button
+        displayPlayStart: function() {
+            // Create containing div, add svg and text
+            var startPlayBtn = document.createElement("div");
+            startPlayBtn.id = "play-start";
+            startPlayBtn.className = "play";
+            startPlayBtn.classList.add("play--start");
+            var startPlayImg = document.createElement("img");
+            startPlayImg.src = "img/play_shamrock.svg";
+            startPlayImg.alt = "Play the game";
+            startPlayBtn.appendChild(startPlayImg);
+            var startPlayTxt = document.createElement("div");
+            startPlayTxt.className = "play__text";
+            startPlayTxt.textContent = "play";
+            startPlayBtn.appendChild(startPlayTxt);
+
+            // Display button
+            document.getElementById("canvas__interior").appendChild(startPlayBtn);
+
+            return true;
+        },
+
+        hidePlayStart: function() {
+            document.getElementById("canvas__interior").removeChild(document.getElementById("play-start"));
+        },
+
         displayPlayBtn: function() {
-            document.getElementById("play-btn").setAttribute("style", 
-                "display: block;")
+            // document.getElementById("play-btn").setAttribute("style", "display: block;")
+
+            // Create containing div, add svg 
+            var replayBtn = document.createElement("div");
+            replayBtn.id = "play-btn";
+            replayBtn.className = "play";
+            replayBtn.classList.add("play--replay");
+            var replayImg = document.createElement("img");
+            replayImg.src = "img/replay_shamrock.svg";
+            replayImg.alt = "Play again";
+            replayBtn.appendChild(replayImg);
+
+            // Display button
+            document.getElementById("canvas__interior").appendChild(replayBtn);
+
+            return true;
         },
 
         hidePlayBtn: function() {
-            document.getElementById("play-btn").setAttribute("style", 
-                "display: none;")
+            // document.getElementById("play-btn").setAttribute("style", "display: none;")
+            document.getElementById("canvas__interior").removeChild(document.getElementById("play-btn"));
         }, 
 
         // Show the pie timer
@@ -153,19 +195,29 @@ var controller = (function(UICtrl, dataCtrl) {
 
     // Event listeners
     var setupEventListeners = function() {
-        // When animation ends, start game, hide animatino div
+
+        // When animation ends, start game, hide animation div
         document.getElementById("anim-last").addEventListener("animationend", function() {
-            startGame();
-            document.getElementById("splash").setAttribute("style", "display: none;")
+            // TODO document.getElementById("splash").setAttribute("style", "display: none;")
+
+            // Add and show Play start button
+            var isReady = UICtrl.displayPlayStart();
+            if (isReady) {
+                // When Play button, add listener to start game
+                document.getElementById("play-start").addEventListener("click", function() {
+                    // UICtrl.fullScreenToggle(); // TODO
+                    startGame();
+                    UICtrl.hidePlayStart();
+                })
+            }
+
+            
         });
         // DEBUG
         // document.addEventListener("DOMContentLoaded", startGame);
-
+        
         // After click target: process the success
         document.getElementById("target").addEventListener("click", processSuccess);
-
-        // After click play again button: reset game
-        document.getElementById("play-btn").addEventListener("click", startGame);
 
         // Full screen toggle
         document.getElementById("fullscreen-toggle").addEventListener("click", UICtrl.fullScreenToggle, false);  
@@ -212,7 +264,17 @@ var controller = (function(UICtrl, dataCtrl) {
         // When game ends, show replay button, hide target, 
         // clear timer, stop new targets
         var gameTimeout = window.setTimeout(function() {
-            UICtrl.displayPlayBtn();
+
+            // Show the play again button and add listener to start game
+            var isPlayBtn = UICtrl.displayPlayBtn();
+            if (isPlayBtn) {
+                document.getElementById("play-btn").addEventListener("click", function() {
+                    startGame();
+                    UICtrl.hidePlayBtn();
+                })
+            }
+
+
             UICtrl.hideTarget();
             window.clearTimeout(gameTimeout);
             newTargetTimer(false);
@@ -259,7 +321,7 @@ var controller = (function(UICtrl, dataCtrl) {
         UICtrl.displayFeedback();
 
         // To account for edge cases, hide play button
-        UICtrl.hidePlayBtn();
+        // UICtrl.hidePlayBtn();
     }
     
 
@@ -268,9 +330,6 @@ var controller = (function(UICtrl, dataCtrl) {
         // Reset score and display score
         var newScore = dataCtrl.resetScore();
         UICtrl.displayScore(newScore);
-
-        // Hide replay button
-        UICtrl.hidePlayBtn();
 
         // Restart game timer
         gameTimer(dataCtrl.getGameTimeMS());

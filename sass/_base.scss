@@ -16,15 +16,11 @@ html {
 body {
     // min-width: $app-min-width;
     // max-width: $app-max-width;
-    font-size: calc(6.5px + .66vw);
-    color: $color-black;
     margin: 0 auto;
     font-family: 'Poppins', sans-serif;
     color: $color-black;
     background: linear-gradient(90deg, $color-green-dull 0%, 
-    $color-green-lime 50%, $color-green-dull 100%);  
-
-
+        $color-green-lime 50%, $color-green-dull 100%);  
   }
 
 .fullscreen {
@@ -78,4 +74,9 @@ footer {
   }
 
   }  
+
+  header {
+    grid-row: top-start / bottom-end;
+    grid-column: left-start / status-start;
   
+  }

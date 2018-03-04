@@ -17,6 +17,8 @@
         opacity: .99;
         position: relative;
         z-index: $z-index-canvas;
+        display: block;
+        margin: auto;
         // border: 2px solid rgba($color-green, .3);
 
     }
