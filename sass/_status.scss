@@ -165,6 +165,7 @@
         background: linear-gradient(0deg, rgba($color-green-dark, 1) 0%, 
             rgba($color-green, 0) 100%);  
         opacity: 0;
+        transform-origin: bottom left;
         animation: zoomIn $splash-quick-dur forwards $splash-status-del;
         }
 
@@ -174,6 +175,7 @@
         background: linear-gradient(0deg, rgba($color-blue-dark, 1) 0%, 
             rgba($color-blue, 0) 100%);  
         opacity: 0;
+        transform-origin: bottom center;
         animation: zoomIn $splash-quick-dur forwards $splash-status-del;
         }
 
@@ -183,6 +185,7 @@
         background: linear-gradient(0deg, rgba($color-purple-dark, 1) 0%, 
             rgba($color-purple, 0) 100%);  
         opacity: 0;
+        transform-origin: bottom right;
         animation: zoomIn $splash-quick-dur forwards $splash-status-del;
         }
 

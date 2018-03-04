@@ -48,6 +48,27 @@ var UIController = (function() {
         // Display target in rand location that 
         // animates according to rand inputs 
         displayTarget: function(x, y, delay, dur, moveX, moveY, sz) {
+        
+            // Create containing div, add svg and text
+            var newTarget = document.createElement("div");
+            newTarget.id = "target";
+            newTarget.className = "target";
+            var newTargetImg = document.createElement("img");
+            newTargetImg.src = "img/cat.svg";
+            newTargetImg.id = "target-cat";
+            newTargetImg.className = "target--cat";
+            newTargetImg.alt = "Catch THIS cat!";
+            newTarget.appendChild(newTargetImg);
+            var newTargetWreathImg = document.createElement("img");
+            newTargetWreathImg.src = "img/cat-clovers.svg";
+            newTargetWreathImg.className = "target--wreath";
+            newTargetWreathImg.alt = "Yes, THIS cat!";
+            newTarget.appendChild(newTargetWreathImg);
+            
+            // Display button
+            document.getElementById("canvas__interior").appendChild(newTarget);
+            
+
             document.getElementById("target").classList.remove("target"); 
             document.getElementById("target").classList.add("target--start"); 
             document.getElementById("target").setAttribute("style", "top: " + y +"%; left: " + x +"%;");
@@ -59,14 +80,19 @@ var UIController = (function() {
                 }, delay);
                 
             document.getElementById("target").classList.add("target"); 
+
+            return true;
         }, 
+
+
 
         displayScore: function(sc) {
             document.getElementById("score").textContent = sc;
         },
 
         hideTarget: function() {
-            document.getElementById("target").setAttribute("style", "display: none;");
+            // document.getElementById("target").setAttribute("style", "display: none;");
+            document.getElementById("canvas__interior").removeChild(document.getElementById("target"));
         },
 
         // Show shamrocks above score area as feedback for points earned
@@ -82,8 +108,6 @@ var UIController = (function() {
             });
         },
 
-        /////////////////////////////////////////////////
-        ////////////////////////////////////////////////
         // Create and display Start Play button
         displayPlayStart: function() {
             // Create containing div, add svg and text
@@ -112,7 +136,6 @@ var UIController = (function() {
 
         displayPlayBtn: function() {
             // document.getElementById("play-btn").setAttribute("style", "display: block;")
-
             // Create containing div, add svg 
             var replayBtn = document.createElement("div");
             replayBtn.id = "play-btn";
@@ -198,7 +221,7 @@ var controller = (function(UICtrl, dataCtrl) {
 
         // When animation ends, start game, hide animation div
         document.getElementById("anim-last").addEventListener("animationend", function() {
-            // TODO document.getElementById("splash").setAttribute("style", "display: none;")
+            document.getElementById("splash").setAttribute("style", "display: none;")
 
             // Add and show Play start button
             var isReady = UICtrl.displayPlayStart();
@@ -217,7 +240,10 @@ var controller = (function(UICtrl, dataCtrl) {
         // document.addEventListener("DOMContentLoaded", startGame);
         
         // After click target: process the success
-        document.getElementById("target").addEventListener("click", processSuccess);
+        var targetReady = UICtrl.displayTarget();
+        if (targetReady) {
+            document.getElementById("target").addEventListener("click", processSuccess);
+        }
 
         // Full screen toggle
         document.getElementById("fullscreen-toggle").addEventListener("click", UICtrl.fullScreenToggle, false);  
