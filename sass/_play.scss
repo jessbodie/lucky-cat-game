@@ -1,14 +1,59 @@
 .play {
     grid-row: interior-top / interior-end;
     grid-column: interior-left / interior-right;
-    margin: auto;
     cursor: pointer;
     z-index: $z-index-target;
-    filter: drop-shadow( 1px 1px 1px rgba($color-black, .4) );
-    display: none;
+    display: block;
+    position: relative;
+    animation: zoomIn 1s forwards ease-in-out;
+    height: auto;
+    width: 25vw;
+    margin: 20% auto;
 
     svg, img {
-        width: 7rem;
-        height: auto;
+        width: 25vw;
+        margin: auto;
+        display: block;
+        height: 100%;
     }
+
+    &--replay {
+        display: block;
+        filter: drop-shadow( 1px 1px 1px rgba($color-black, .4) );
+
+        svg, img {
+            margin: auto;
+            display: block;
+            height: auto;
+        }
+
+    }
+
+    &--start {
+        display: block;
+        background-color:rgba($color-green, .6);
+        border-radius: 50%;
+        box-shadow: 2px 2px 3px rgba($color-black, .4);
+
+        svg, img {
+            filter: opacity(.4) drop-shadow( 1px 1px 1px rgba($color-black, .2) );
+            position: relative;
+            top: 0;
+        }
+    }
+    &__text {
+        padding: 1rem;
+        display: block;
+        line-height: 1;
+        position: absolute;
+        bottom: 5rem;
+        margin: auto;
+        width: 100%;
+        text-align: center;
+        font-size: 4rem;
+        font-weight: bold;
+        color: $color-gray;
+        text-shadow: 1px 2px 2px rgba($color-black, .4);
+    }
+
 }
