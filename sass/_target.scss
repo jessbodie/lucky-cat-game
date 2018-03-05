@@ -1,9 +1,22 @@
 .target {
-    display: none;
+    // display: none;
+    display: inline-block;
     width: 4em;
     height: auto;
     filter: drop-shadow( 2px 2px 2px rgba($color-black, .6) );
     position: absolute;
+    border-radius: 2rem;
+    z-index: $z-index-target;
+    opacity: 1;
+    transform: scale(1.2) translate3d(0, 0, 0);
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
 
     img {
         draggable: false;
@@ -16,9 +29,7 @@
             -ms-user-select: none; /* Internet Explorer/Edge */
                 user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
-        standard-user-select: none;
     }
-
 
     // TODO DEBUG FIREFOX SELECTION HIGHLIGHTING
     &::-moz-selection {
@@ -58,6 +69,8 @@
         left: -2rem;
         width: 200%;
         height: 200%;
+        border-radius: 2rem;
+    
 
         &:focus,
         &:hover, 
@@ -67,21 +80,21 @@
         }
     }
 
-    &--start {
-        display: inline-block;
-        position: relative;
-        z-index: $z-index-target;
-        opacity: 1;
-        transform: scale(1.2) translate3d(0, 0, 0);
-    }
+    // &--start {
+    //     display: inline-block;
+    //     position: relative; // TODO?
+    //     z-index: $z-index-target;
+    //     opacity: 1;
+    //     transform: scale(1.2) translate3d(0, 0, 0);
+    // }
 
-    &--end {
-        display: inline-block;
-        position: relative;
-        z-index: $z-index-target;
-        opacity: 0;
-        transition-property: opacity, transform;
-        transition-timing-function: ease-in-out;
-    }
+    // &--end {
+    //     display: inline-block;
+    //     position: relative;
+    //     z-index: $z-index-target;
+    //     opacity: 0;
+    //     transition-property: opacity, transform;
+    //     transition-timing-function: ease-in-out;
+    // }
 
 }
