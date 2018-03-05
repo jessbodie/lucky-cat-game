@@ -3,12 +3,11 @@
 var dataController = (function() {
 
 // Score
-
 var score = 0;
 var increment = 10;
 
 // Level
-var gameTimeMS = 20000;
+var gameTimeMS = 30000;
 
 // Target location
 
@@ -68,31 +67,24 @@ var UIController = (function() {
             // Display button
             document.getElementById("canvas__interior").appendChild(newTarget);
             
-
-            document.getElementById("target").classList.remove("target"); 
-            document.getElementById("target").classList.add("target--start"); 
+            // Display Lucky Cat as the target
             document.getElementById("target").setAttribute("style", "top: " + y +"%; left: " + x +"%;");
-
+            // Display Lucky Cat Target in new location, on a timer
             var timeoutID = window.setTimeout(function() {
-                document.getElementById("target").classList.remove("target--start"); 
-                document.getElementById("target").classList.add("target--end"); 
-                document.getElementById("target").setAttribute("style", "top: " + y +"%; left: " + x +"%; transform: scale(" + sz + ") translate3d(" + moveX + "rem, " + moveY + "rem, " + "0); transition-duration: " + dur + "ms;");
+                document.getElementById("target").setAttribute("style", "top: " + y +"%; left: " + x +"%;         transform: scale(" + sz + ") translate3d(" + moveX + "rem, " + moveY + "rem, " + "0);         transition-duration: " + dur + "ms;         opacity: 0;         transition-property: opacity, transform;         transition-timing-function: ease-in-out;");
                 }, delay);
                 
-            document.getElementById("target").classList.add("target"); 
-
             return true;
         }, 
-
-
 
         displayScore: function(sc) {
             document.getElementById("score").textContent = sc;
         },
 
         hideTarget: function() {
-            // document.getElementById("target").setAttribute("style", "display: none;");
-            document.getElementById("canvas__interior").removeChild(document.getElementById("target"));
+            if (document.getElementById("target")) {
+                document.getElementById("canvas__interior").removeChild(document.getElementById("target"));
+            }
         },
 
         // Show shamrocks above score area as feedback for points earned
@@ -153,7 +145,6 @@ var UIController = (function() {
         },
 
         hidePlayBtn: function() {
-            // document.getElementById("play-btn").setAttribute("style", "display: none;")
             document.getElementById("canvas__interior").removeChild(document.getElementById("play-btn"));
         }, 
 
@@ -219,32 +210,23 @@ var controller = (function(UICtrl, dataCtrl) {
     // Event listeners
     var setupEventListeners = function() {
 
-        // When animation ends, start game, hide animation div
+        // When animation ends, hide animation div and listen to start game
         document.getElementById("anim-last").addEventListener("animationend", function() {
             document.getElementById("splash").setAttribute("style", "display: none;")
-
             // Add and show Play start button
             var isReady = UICtrl.displayPlayStart();
             if (isReady) {
                 // When Play button, add listener to start game
                 document.getElementById("play-start").addEventListener("click", function() {
-                    // UICtrl.fullScreenToggle(); // TODO
+                    if (window.matchMedia("(max-width: 800px)").matches) {
+                        UICtrl.fullScreenToggle();
+                    }
                     startGame();
                     UICtrl.hidePlayStart();
                 })
             }
-
-            
         });
-        // DEBUG
-        // document.addEventListener("DOMContentLoaded", startGame);
         
-        // After click target: process the success
-        var targetReady = UICtrl.displayTarget();
-        if (targetReady) {
-            document.getElementById("target").addEventListener("click", processSuccess);
-        }
-
         // Full screen toggle
         document.getElementById("fullscreen-toggle").addEventListener("click", UICtrl.fullScreenToggle, false);  
 
@@ -272,8 +254,11 @@ var controller = (function(UICtrl, dataCtrl) {
 
     // Set timer for showing new targets 
     // Target Interval ID, must be global
+    // TODO Vary the time interval
+    // https://stackoverflow.com/questions/1280263/changing-the-interval-of-setinterval-while-its-running
     var newTargetInterval;
     function newTargetTimer(go) {
+        console.log('newtargettimer');
         var newTargetTimeout = 2500;
         if (go === true) {
             newTargetInterval = window.setInterval(showNewTarget, newTargetTimeout);
@@ -300,7 +285,7 @@ var controller = (function(UICtrl, dataCtrl) {
                 })
             }
 
-
+            // On timeout, hide target, and reset timer
             UICtrl.hideTarget();
             window.clearTimeout(gameTimeout);
             newTargetTimer(false);
@@ -310,8 +295,7 @@ var controller = (function(UICtrl, dataCtrl) {
     // Display target in random location on canvas
     function showNewTarget() {
         // Hide prev target
-        document.getElementById("target").classList.add("target"); 
-        document.getElementById("target").classList.remove("target--end");
+        UICtrl.hideTarget();
 
         // Get random x and y coordinates
         var xLoc = dataCtrl.getRand(0, 97);
@@ -334,10 +318,13 @@ var controller = (function(UICtrl, dataCtrl) {
         UICtrl.displayTarget(xLoc, yLoc, animDelay, animDuration, xMove, yMove, scaleSize);
         console.log("x, y: " + xLoc + ", " + yLoc + " / delay: " + animDelay + "/ scaleSize: " + scaleSize + " Move: " + xMove + ", " + yMove);
 
+        // Add listener to handle click success
+        document.getElementById("target").addEventListener("click", processSuccess);
     }
     
     // On success: hide target, update score, show new target
     function processSuccess() {
+        console.log('processSuccess');
         // Hide target
         UICtrl.hideTarget();
 
@@ -345,14 +332,12 @@ var controller = (function(UICtrl, dataCtrl) {
         var newScore = dataCtrl.updateScore();
         UICtrl.displayScore(newScore);
         UICtrl.displayFeedback();
-
-        // To account for edge cases, hide play button
-        // UICtrl.hidePlayBtn();
     }
     
 
     // Reset score, hide play button,  show new target
     function startGame() {
+        console.log('start game');
         // Reset score and display score
         var newScore = dataCtrl.resetScore();
         UICtrl.displayScore(newScore);

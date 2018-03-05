@@ -30,7 +30,6 @@
                 -ms-user-select: none; /* Internet Explorer/Edge */
                     user-select: none; /* Non-prefixed version, currently
                                         supported by Chrome and Opera */
-            standard-user-select: none;
             margin: 0 auto;
             }
 
@@ -90,39 +89,38 @@
         }
     }
 
-    &__countdown {
-        grid-row: splash-mid-start / splash-mid-end;
-        grid-column: splash-mid-left / splash-mid-right;
-        margin: auto;
-        font-size: 20rem;
-        font-weight: bold;
-        line-height: 0;
-        opacity: 0;
-        text-shadow: 2px 2px 2px rgba($color-black, .4);
+    // &__countdown {
+    //     grid-row: splash-mid-start / splash-mid-end;
+    //     grid-column: splash-mid-left / splash-mid-right;
+    //     margin: auto;
+    //     font-size: 20rem;
+    //     font-weight: bold;
+    //     line-height: 0;
+    //     opacity: 0;
+    //     text-shadow: 2px 2px 2px rgba($color-black, .4);
 
-        &--3 {
-            animation: zoomInOut $splash-count-dur $splash-dur;
-            color: $color-purple-dark;
-            &:before {
-                content: "3";
-            }
-        }
+    //     &--3 {
+    //         animation: zoomInOut $splash-count-dur $splash-dur;
+    //         color: $color-purple-dark;
+    //         &:before {
+    //             content: "3";
+    //         }
+    //     }
 
-        &--2 {
-            animation: zoomInOut $splash-count-dur calc(#{$splash-dur} + .8s);
-            color: $color-blue-dark;
-            &:before {
-                content: "2";
-            }
-        }
+    //     &--2 {
+    //         animation: zoomInOut $splash-count-dur calc(#{$splash-dur} + .8s);
+    //         color: $color-blue-dark;
+    //         &:before {
+    //             content: "2";
+    //         }
+    //     }
 
-        &--1 {
-            animation: zoomInOut $splash-count-dur calc(#{$splash-dur} + 1.6s);
-            color: $color-green-dark;
-            &:before {
-                content: "1";
-            }
-        }
-
-    }
+    //     &--1 {
+    //         animation: zoomInOut $splash-count-dur calc(#{$splash-dur} + 1.6s);
+    //         color: $color-green-dark;
+    //         &:before {
+    //             content: "1";
+    //         }
+    //     }
+    // }
 }

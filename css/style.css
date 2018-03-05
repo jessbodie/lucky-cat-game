@@ -99,7 +99,6 @@ header {
       user-select: none;
       /* Non-prefixed version, currently
                                         supported by Chrome and Opera */
-      standard-user-select: none;
       margin: 0 auto; }
     .splash__cat--big {
       grid-row: splash-top / splash-end;
@@ -142,30 +141,6 @@ header {
       transform-origin: bottom left;
       opacity: 0;
       text-shadow: 1px 2px 2px rgba(198, 217, 206, 0.5); }
-  .splash__countdown {
-    grid-row: splash-mid-start / splash-mid-end;
-    grid-column: splash-mid-left / splash-mid-right;
-    margin: auto;
-    font-size: 20rem;
-    font-weight: bold;
-    line-height: 0;
-    opacity: 0;
-    text-shadow: 2px 2px 2px rgba(27, 27, 27, 0.4); }
-    .splash__countdown--3 {
-      animation: zoomInOut 0.7s 8s;
-      color: #9630CF; }
-      .splash__countdown--3:before {
-        content: "3"; }
-    .splash__countdown--2 {
-      animation: zoomInOut 0.7s calc(8s + .8s);
-      color: #0054D4; }
-      .splash__countdown--2:before {
-        content: "2"; }
-    .splash__countdown--1 {
-      animation: zoomInOut 0.7s calc(8s + 1.6s);
-      color: #009245; }
-      .splash__countdown--1:before {
-        content: "1"; }
 
 .canvas {
   grid-row: top-start / bottom-end;
@@ -335,11 +310,28 @@ header {
   fill: #C6D9CE; }
 
 .target {
-  display: none;
+  display: inline-block;
   width: 4em;
   height: auto;
   filter: drop-shadow(2px 2px 2px rgba(27, 27, 27, 0.6));
-  position: absolute; }
+  position: absolute;
+  border-radius: 2rem;
+  z-index: 300;
+  opacity: 1;
+  transform: scale(1.2) translate3d(0, 0, 0);
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                supported by Chrome and Opera */ }
   .target img {
     draggable: false;
     -webkit-touch-callout: none;
@@ -354,8 +346,7 @@ header {
     /* Internet Explorer/Edge */
     user-select: none;
     /* Non-prefixed version, currently
-                                    supported by Chrome and Opera */
-    standard-user-select: none; }
+                                    supported by Chrome and Opera */ }
   .target::-moz-selection {
     background: transparent; }
   .target img::-moz-selection,
@@ -379,23 +370,11 @@ header {
     top: -2.5rem;
     left: -2rem;
     width: 200%;
-    height: 200%; }
+    height: 200%;
+    border-radius: 2rem; }
     .target--wreath:focus, .target--wreath:hover, .target--wreath:active {
       opacity: 1;
       transition: opacity 300ms ease-in; }
-  .target--start {
-    display: inline-block;
-    position: relative;
-    z-index: 300;
-    opacity: 1;
-    transform: scale(1.2) translate3d(0, 0, 0); }
-  .target--end {
-    display: inline-block;
-    position: relative;
-    z-index: 300;
-    opacity: 0;
-    transition-property: opacity, transform;
-    transition-timing-function: ease-in-out; }
 
 .play {
   grid-row: interior-top / interior-end;
@@ -404,12 +383,12 @@ header {
   z-index: 300;
   display: block;
   position: relative;
-  animation: zoomIn 1s forwards ease-in-out;
-  height: auto;
-  width: 25vw;
-  margin: 20% auto; }
+  animation: zoomIn 1s forwards ease-in;
+  height: 25vmin;
+  width: 25vmin;
+  margin: 20vmin auto; }
   .play svg, .play img {
-    width: 25vw;
+    width: 25vmin;
     margin: auto;
     display: block;
     height: 100%; }
@@ -429,10 +408,10 @@ header {
     background-color: rgba(198, 217, 206, 0.5);
     border-radius: 50%;
     box-shadow: 2px 2px 3px rgba(27, 27, 27, 0.2);
-    transition: box-shadow 1s; }
+    transition: box-shadow .3s; }
     .play--start:hover {
       box-shadow: 2px 2px 5px rgba(27, 27, 27, 0.6);
-      transition: box-shadow 1s; }
+      transition: box-shadow .3s; }
     .play--start svg, .play--start img {
       filter: opacity(0.4) drop-shadow(1px 1px 1px rgba(27, 27, 27, 0.2));
       position: relative;
@@ -442,11 +421,11 @@ header {
     display: block;
     line-height: 1;
     position: absolute;
-    bottom: 5rem;
+    top: 30%;
     margin: auto;
     width: 100%;
     text-align: center;
-    font-size: 4rem;
+    font-size: 8vmin;
     font-weight: bold;
     color: #4e4d4d;
     text-shadow: 1px 2px 2px rgba(27, 27, 27, 0.4); }
