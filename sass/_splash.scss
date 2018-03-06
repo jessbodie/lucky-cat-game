@@ -80,7 +80,7 @@
 
         &--fill {
             font-size: 2.6vw;
-            animation: zoomInOut $splash-text-dur forwards 
+            animation: zoomInOut calc(#{$splash-text-dur} - .5s) forwards 
                 calc(#{$splash-pot-del} + .2s);
             transform-origin: bottom left;
             opacity: 0;

@@ -1,0 +1,48 @@
+.bigscore {
+    grid-row: interior-top / span 1;
+    grid-column: 2 / span 1;
+    margin: auto;
+    z-index: 900;
+    color: $color-black;
+    width: 25vmin;
+    height: 7rem;
+    font-size: 4.5rem;
+    background-color: $color-gray;
+    padding: 0rem 1rem;
+    border-radius: 2px;
+    text-align: right;
+    box-shadow: 2px 2px 2px 1px rgba($color-black, .2);
+    display: block;
+    position: relative;
+    opacity: 0;
+    animation: scoreIn $score-anim-dur ease-out forwards;
+    transform-origin: center;
+
+    &__wow {
+        color: $color-purple;
+        font-size: 4rem;
+        text-shadow: 2px -2px 3px rgba($color-purple, .5);
+        display: inline-block;
+        position: relative;
+        bottom: 1.8rem;
+        right: -3rem;
+        text-align: center;
+        font-weight: bold;
+        transform: rotate(-10deg);
+        animation: zoomWow $wow-anim-dur $wow-anim-del ease-in;
+        opacity: 0;
+
+        &::before {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            content: "wow!";
+            font-size: calc(4rem - 2px);
+            color: $color-green-lime;
+            // animation: zoomWow 2s ease-in;
+            // opacity: 0;
+            }
+    }
+
+
+}

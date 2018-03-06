@@ -5,12 +5,9 @@
     z-index: $z-index-target;
     display: block;
     position: relative;
-    animation: zoomIn 1s forwards ease-in;
     height: 25vmin;
     width: 25vmin;
-    margin: 20vmin auto;
-
-
+    margin: 17vh auto 5vh auto;
 
     svg, img {
         width: 25vmin;
@@ -23,6 +20,8 @@
         display: block;
         filter: drop-shadow( 1px 1px 1px rgba($color-black, .4) );
         transition: filter 1s;
+        opacity: 0;
+        animation: zoomIn 1s $replay-anim-del forwards ease-out;
 
         &:hover {
             filter: drop-shadow( 1px 2px 2px rgba($color-black, .6) );
@@ -44,6 +43,7 @@
         border-radius: 50%;
         box-shadow: 2px 2px 3px rgba($color-black, .2);
         transition: box-shadow .3s;
+        animation: zoomIn 1s forwards ease-in;
 
         &:hover {
             box-shadow: 2px 2px 5px rgba($color-black, .6);

@@ -7,7 +7,7 @@ var score = 0;
 var increment = 10;
 
 // Level
-var gameTimeMS = 30000;
+var gameTimeMS = 45000;
 
 // Target location
 
@@ -27,6 +27,10 @@ var gameTimeMS = 30000;
 
         updateScore: function() {
             score = score + increment;
+            return score;
+        }, 
+
+        getScore: function() {
             return score;
         }, 
 
@@ -127,7 +131,6 @@ var UIController = (function() {
         },
 
         displayPlayBtn: function() {
-            // document.getElementById("play-btn").setAttribute("style", "display: block;")
             // Create containing div, add svg 
             var replayBtn = document.createElement("div");
             replayBtn.id = "play-btn";
@@ -258,13 +261,11 @@ var controller = (function(UICtrl, dataCtrl) {
     // https://stackoverflow.com/questions/1280263/changing-the-interval-of-setinterval-while-its-running
     var newTargetInterval;
     function newTargetTimer(go) {
-        console.log('newtargettimer');
         var newTargetTimeout = 2500;
         if (go === true) {
             newTargetInterval = window.setInterval(showNewTarget, newTargetTimeout);
         } else if (go === false) {
             window.clearInterval(newTargetInterval);
-            // return;
         }
     };
 
@@ -276,19 +277,37 @@ var controller = (function(UICtrl, dataCtrl) {
         // clear timer, stop new targets
         var gameTimeout = window.setTimeout(function() {
 
+
+            // On timeout, hide current and next target, and reset timer
+            UICtrl.hideTarget();
+            newTargetTimer(false);
+            window.clearTimeout(gameTimeout);
+
             // Show the play again button and add listener to start game
             var isPlayBtn = UICtrl.displayPlayBtn();
             if (isPlayBtn) {
                 document.getElementById("play-btn").addEventListener("click", function() {
+                    document.getElementById("bigscore").remove();
                     startGame();
                     UICtrl.hidePlayBtn();
                 })
             }
+            
+            // Also, show score animation
+            console.log('score animation');
+            var bigScore = document.createElement("div");
+            bigScore.className = "bigscore";
+            bigScore.id = "bigscore";
+            bigScore.textContent = dataCtrl.getScore();
+            document.getElementById("canvas__interior").appendChild(bigScore);
+            var wow = document.createElement("div");
+            wow.className = "bigscore__wow";
+            wow.id = "bigscore__wow";
+            wow.textContent = "wow!";
+            console.log(wow);
+            document.getElementById("bigscore").appendChild(wow);
 
-            // On timeout, hide target, and reset timer
-            UICtrl.hideTarget();
-            window.clearTimeout(gameTimeout);
-            newTargetTimer(false);
+
         }, time);
     };
 
@@ -324,7 +343,6 @@ var controller = (function(UICtrl, dataCtrl) {
     
     // On success: hide target, update score, show new target
     function processSuccess() {
-        console.log('processSuccess');
         // Hide target
         UICtrl.hideTarget();
 
@@ -337,7 +355,6 @@ var controller = (function(UICtrl, dataCtrl) {
 
     // Reset score, hide play button,  show new target
     function startGame() {
-        console.log('start game');
         // Reset score and display score
         var newScore = dataCtrl.resetScore();
         UICtrl.displayScore(newScore);
