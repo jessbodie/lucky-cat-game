@@ -74,6 +74,13 @@ footer {
     top: 0;
     opacity: .99;
     z-index: $z-index-footer;
+
+    &:hover, 
+    &:active, 
+    &:focus {
+      color: $color-black;
+      transition: color .3s;
+    }
   }
 
   }  

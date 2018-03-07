@@ -9,26 +9,37 @@
     z-index: $z-index-target;
     opacity: 1;
     transform: scale(1.2) translate3d(0, 0, 0);
-    user-select: none; 
-
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
     img {
         // Prevent image SVG from being selected (which caused weird background)
-        user-select: none; 
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
         }
 
     // TODO DEBUG FIREFOX SELECTION HIGHLIGHTING
-    // &::-moz-selection {
-    //     background: transparent;
-    //   }
-    // img::-moz-selection, 
-    // svg::-moz-selection {
-    //     background: transparent;
-    // }
+    &::-moz-selection {
+        background: transparent;
+      }
+    img::-moz-selection, 
+    svg::-moz-selection {
+        background: transparent;
+    }
 
-    // img::selection, 
-    // svg::selection {
-    //     background: none;
-    // }
+    img::selection, 
+    svg::selection {
+        background: none;
+    }
 
     &:hover {
         cursor: pointer;

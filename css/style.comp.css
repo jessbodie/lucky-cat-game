@@ -56,6 +56,9 @@ footer {
     top: 0;
     opacity: .99;
     z-index: 100; }
+    .footer a:hover, .footer a:active, .footer a:focus {
+      color: #1B1B1B;
+      transition: color .3s; }
 
 header {
   grid-row: top-start / bottom-end;
@@ -314,9 +317,41 @@ header {
   z-index: 300;
   opacity: 1;
   transform: scale(1.2) translate3d(0, 0, 0);
-  user-select: none; }
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                supported by Chrome and Opera */ }
   .target img {
-    user-select: none; }
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */ }
+  .target::-moz-selection {
+    background: transparent; }
+  .target img::-moz-selection,
+  .target svg::-moz-selection {
+    background: transparent; }
+  .target img::selection,
+  .target svg::selection {
+    background: none; }
   .target:hover {
     cursor: pointer; }
   .target--cat {
@@ -350,16 +385,29 @@ header {
     width: 25vmin;
     margin: auto;
     display: block;
-    height: 100%; }
+    height: 100%;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */ }
   .play--replay {
     display: block;
-    filter: drop-shadow(1px 1px 1px rgba(27, 27, 27, 0.4));
+    filter: brightness(80%) drop-shadow(1px 1px 2px rgba(78, 77, 77, 0.7));
     transition: filter 1s;
     opacity: 0;
     animation: zoomIn 1s calc(3s / 2) forwards ease-out; }
-    .play--replay:hover {
-      filter: drop-shadow(1px 2px 2px rgba(27, 27, 27, 0.6));
-      transition: filter 1s; }
+    .play--replay:hover, .play--replay:active, .play--replay:focus {
+      filter: brightness(100%) drop-shadow(2px 2px 4px rgba(78, 77, 77, 0.8));
+      transition: filter .3s; }
     .play--replay svg, .play--replay img {
       margin: auto;
       display: block;
@@ -371,9 +419,12 @@ header {
     box-shadow: 2px 2px 3px rgba(27, 27, 27, 0.2);
     transition: box-shadow .3s;
     animation: zoomIn 1s forwards ease-in; }
-    .play--start:hover {
-      box-shadow: 2px 2px 5px rgba(27, 27, 27, 0.6);
+    .play--start:hover, .play--start:active, .play--start:focus {
+      box-shadow: 3px 3px 4px rgba(78, 77, 77, 0.6);
       transition: box-shadow .3s; }
+      .play--start:hover svg, .play--start:hover img, .play--start:active svg, .play--start:active img, .play--start:focus svg, .play--start:focus img {
+        filter: opacity(0.7) drop-shadow(1px 1px 2px rgba(78, 77, 77, 0.4));
+        transition: filter .3s; }
     .play--start svg, .play--start img {
       filter: opacity(0.4) drop-shadow(1px 1px 1px rgba(27, 27, 27, 0.2));
       position: relative;
