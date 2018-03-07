@@ -35,20 +35,18 @@
   <div class="container" id="container">
 
     <header>
-  <!-- TODO INTRO ANIMATION -->
       <!-- Start Opening Splash Animation -->
       <div class="splash" id="splash">
         <img src="img/cat.svg" class="splash__cat splash__cat--big" alt="Lucky Cat">
-        <div class="splash__instruc">
+        <div class="splash__instruc" id="anim-last">
             <div class="splash__instruc--catch">Catch Lucky Cat</div>
-            <div class="splash__instruc--fill" id="anim-last">and fill your pot with gold!</div>
+            <div class="splash__instruc--fill">and fill your pot with gold!</div>
         </div>
         <div class="splash__cat splash__cat--wreath">
           <img src="img/cat_orig.svg" alt="Lucky Cat">
         </div>
-
       </div>
-<!-- Close Splash Animation -->
+      <!-- Close Splash Animation -->
   </header>
   
 
@@ -69,7 +67,7 @@
       <div class="status__feedback" id="feedback">
       </div>
 
-      <div class="status__score" id="score">0</div>
+      <div class="status__score status__score--sm" id="score">0</div>
       <div class="status__timer" id="timer">
           <svg  xmlns="http://www.w3.org/2000/svg" width="250" height="250" viewbox="0 0 250 250">
             <path id="timer-border" transform="translate(125, 125)"/>

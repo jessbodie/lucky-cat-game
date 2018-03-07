@@ -38,21 +38,24 @@
     }
 
     &__score {
-        grid-row: score-start / score-end;
-        grid-column: 1 / -1;
-        width: 4rem;
         font-size: 1.8rem;
         background-color: $color-gray;
         padding: 0rem .6rem;
-        margin: 0.75rem 1rem .5rem 1rem;
         color: $color-black;
         border-radius: 2px;
         text-align: right;
         box-shadow: 1px 1px 1px 1px rgba($color-black, .2);
+        grid-row: score-start / score-end;
+        grid-column: 1 / -1;
+        width: 4rem;
         z-index: $z-index-back-elements;
+        margin: 0.75rem 1rem .5rem 1rem;
         opacity: 0;
         animation: zoomIn $splash-quick-dur forwards 
             calc(#{$splash-status-del} + .6s);
+
+            &--sm {
+            }
         }    
 
     // Pot o Gold
@@ -196,3 +199,4 @@
 
 #timer-border 
 { fill: $color-gray; }
+
