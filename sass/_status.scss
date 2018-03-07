@@ -12,7 +12,7 @@
         [feedback-end score-start] min-content
         [score-end pot-start] min-content
         [pot-end level-start] min-content
-        [level-end] 1.2rem [status-bottom];
+        [level-end] min-content [status-bottom];
 
     &__feedback {
         grid-row: status-top / feedback-end;
@@ -48,14 +48,11 @@
         grid-row: score-start / score-end;
         grid-column: 1 / -1;
         width: 4rem;
-        z-index: $z-index-back-elements;
+        z-index: $z-index-feedback;
         margin: 0.75rem 1rem .5rem 1rem;
         opacity: 0;
         animation: zoomIn $splash-quick-dur forwards 
             calc(#{$splash-status-del} + .6s);
-
-            &--sm {
-            }
         }    
 
     // Pot o Gold
@@ -69,11 +66,10 @@
         left: 0;
         display: flex;
         align-items: middle;
-        // border: 1px solid red;
         // width: auto;
         height: 4rem;
         opacity: 0;
-        z-index: $z-index-back-elements;
+        z-index: $z-index-pot;
         animation: $splash-pot-dur potOGold $splash-pot-del forwards;
 
 
@@ -82,7 +78,7 @@
             height: auto;
             display: block;
             position: relative;
-            z-index: $z-index-back-elements;
+            z-index: $z-index-pot;
         }
 
         &:after {
@@ -93,7 +89,7 @@
             top: -1rem;
             left: 1rem;
             display: block;
-            z-index: $z-index-back;
+            z-index: calc(#{$z-index-pot} - 5);
             opacity: 0;
             animation: littleCat $splash-quick-dur $splash-little-del;
             // animation: littleCat 10s 2s;
@@ -107,7 +103,7 @@
         position: relative;
         top: 0;
         left: 0;
-        z-index: $z-index-canvas;
+        z-index: $z-index-feedback;
         width: auto;
         height: 4rem;
         display: block;
@@ -168,8 +164,15 @@
         background: linear-gradient(0deg, rgba($color-green-dark, 1) 0%, 
             rgba($color-green, 0) 100%);  
         opacity: 0;
+        border: none;
+        padding: 0;
+        margin: 0;
         transform-origin: bottom left;
         animation: zoomIn $splash-quick-dur forwards $splash-status-del;
+        height: 2.5rem;
+        width: 105%;
+        // @media all and (max-width: 800px) and (orientation: portrait) 
+        //     { height: 4rem; }
         }
 
     &__bot--blue {

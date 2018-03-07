@@ -36,29 +36,19 @@
     transform: scale(6) translate(-7vw, 50%);
   }
 
-  8% {
+  10% {
     opacity: 1;
     transform: scale(6) translate(-7vw, -.5rem);
   }
 
-  11% {
+  13% {
     opacity: 1;
     transform: scale(6) translate(-7vw, 0);
   }
 
-  90% {
+  85% {
     opacity: 1;
     transform: scale(6) translate(-7vw, 0);
-  }
-
-  96% {
-    opacity: 1;
-    transform: scale(1) translate(0, 0);
-  }
-
-  98% {
-    opacity: 1;
-    transform: scale(1) translate(0, 3px);
   }
 
   100% {
@@ -92,37 +82,37 @@
 @keyframes littleCat {
   0% {
     opacity: 0;
-    transform: rotate(20deg) scale(.3) translate(0, 1rem);
+    transform: rotate(15deg) scale(.4) translate(.5rem, 1rem);
     visibility: hidden;
   }
 
   10% {
     opacity: 1;
-    transform: rotate(20deg) scale(.3) translate(0, 1rem);
+    transform: rotate(15deg) scale(.4) translate(.5rem, 1rem);
     visibility: visible;
   }
 
   40% {
     opacity: 1;
-    transform: rotate(20deg) scale(.3) translate(0, -0.5rem);
+    transform: rotate(15deg) scale(.4) translate(.5rem, -1vh);
     visibility: visible;
   }
 
   70% {
     opacity: 1;
-    transform: rotate(20deg) scale(.3) translate(0, -0.5rem);
+    transform: rotate(15deg) scale(.4) translate(.5rem, -1vh);
     visibility: visible;
   }
 
   90% {
     opacity: 1;
-    transform: rotate(20deg) scale(.3) translate(0, 2rem);
+    transform: rotate(15deg) scale(.4) translate(.5rem, 2rem);
     visibility: visible;
   }
 
   100% {
     opacity: 0;
-    transform: rotate(20deg) scale(.3) translate(0, 2rem);
+    transform: rotate(15deg) scale(.4) translate(.5rem, 2rem);
     visibility: hidden;
   }
 }
@@ -166,10 +156,10 @@
     transform: scale(.2) translate(0, -1vh);
   }
 
-  50% {
-    opacity: 1;
-    transform: scale(1) translate(0, -3px);
-  }
+  // 50% {
+  //   opacity: 1;
+  //   transform: scale(1) translate(0, -3px);
+  // }
 
   60% {
     opacity: 1;

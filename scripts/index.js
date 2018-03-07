@@ -61,6 +61,8 @@ var UIController = (function() {
             newTargetImg.id = "target-cat";
             newTargetImg.className = "target--cat";
             newTargetImg.alt = "Catch THIS cat!";
+            newTargetImg.setAttribute("draggable", false);
+            
             newTarget.appendChild(newTargetImg);
             var newTargetWreathImg = document.createElement("img");
             newTargetWreathImg.src = "img/cat-clovers.svg";
@@ -212,6 +214,10 @@ var controller = (function(UICtrl, dataCtrl) {
 
     // Event listeners
     var setupEventListeners = function() {
+
+        var winHeight = window.innerHeight;
+        console.log(winHeight);
+        document.getElementById("container").setAttribute("style", "height: " + winHeight + "px ;")
 
         // When animation ends, hide animation div and listen to start game
         document.getElementById("anim-last").addEventListener("animationend", function() {
