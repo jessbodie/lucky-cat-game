@@ -13,10 +13,11 @@
     opacity: .99;    
     z-index: $z-index-back;
     width: 100vw;
-    height: 100vh;
+    // height: 100vh; // Set in JS for innerHeight
     max-height: 100vh;
     overflow: hidden;
-    background: linear-gradient(90deg, $color-green-dull 0%, 
-        $color-green-lime 50%, $color-green-dull 100%);  
+    background-color: $color-green-dull;  
+    // background: linear-gradient(90deg, $color-green-dull 0%, 
+    //     $color-green-lime 50%, $color-green-dull 100%);  
 
 }

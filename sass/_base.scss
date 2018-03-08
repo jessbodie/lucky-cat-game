@@ -52,25 +52,35 @@ footer {
     grid-row: interior-end / bottom-end;
     grid-column: interior-left / interior-right;
     position: relative;
+    z-index: $z-index-footer;
   }
   
 .footer {
   font-size: .75rem;
   color: $color-black;
   position: absolute;
-  bottom: 2px;
+  bottom: 0;
   width: 100%;
   text-align: center;
-  z-index: $z-index-back-elements;
-  opacity: .6; 
+  z-index: $z-index-footer;
+  opacity: .6;
+  padding-bottom: .8rem; 
 
   a {
     cursor: pointer;
     color: $color-green-dark;
     text-decoration: none;
     position: relative;
+    top: 0;
     opacity: .99;
-    z-index: $z-index-back-elements;
+    z-index: $z-index-footer;
+
+    &:hover, 
+    &:active, 
+    &:focus {
+      color: $color-black;
+      transition: color .3s;
+    }
   }
 
   }  

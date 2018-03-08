@@ -9,7 +9,6 @@
     z-index: $z-index-target;
     opacity: 1;
     transform: scale(1.2) translate3d(0, 0, 0);
-
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
@@ -17,11 +16,8 @@
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                 supported by Chrome and Opera */
-
     img {
-        draggable: false;
         // Prevent image SVG from being selected (which caused weird background)
-        // Works on Chrome, not Firefox
         -webkit-touch-callout: none; /* iOS Safari */
         -webkit-user-select: none; /* Safari */
         -khtml-user-select: none; /* Konqueror HTML */
@@ -29,7 +25,7 @@
             -ms-user-select: none; /* Internet Explorer/Edge */
                 user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
-    }
+        }
 
     // TODO DEBUG FIREFOX SELECTION HIGHLIGHTING
     &::-moz-selection {
@@ -51,12 +47,13 @@
 
     &--cat {
         transform: scale(1.5);
-
-        // TODO DEBUG FIREFOX SELECTION HIGHLIGHTING
-        &::-moz-selection {
-            background: transparent;
-          }
-    
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
     }
 
     &--wreath {
@@ -71,30 +68,20 @@
         height: 200%;
         border-radius: 2rem;
     
-
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+    
         &:focus,
         &:hover, 
         &:active {
             opacity: 1;
-            transition: opacity 300ms ease-in;
+            transition: opacity 300ms ease-out;
         }
     }
-
-    // &--start {
-    //     display: inline-block;
-    //     position: relative; // TODO?
-    //     z-index: $z-index-target;
-    //     opacity: 1;
-    //     transform: scale(1.2) translate3d(0, 0, 0);
-    // }
-
-    // &--end {
-    //     display: inline-block;
-    //     position: relative;
-    //     z-index: $z-index-target;
-    //     opacity: 0;
-    //     transition-property: opacity, transform;
-    //     transition-timing-function: ease-in-out;
-    // }
 
 }

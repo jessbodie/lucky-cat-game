@@ -20,16 +20,8 @@
         z-index: $z-index-splash;
 
         img, svg {
-            draggable: false;
             // Prevent image SVG from being selected (which caused weird background)
-            // Works on Chrome, not Firefox
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Safari */
-            -khtml-user-select: none; /* Konqueror HTML */
-            -moz-user-select: none; /* Firefox */
-                -ms-user-select: none; /* Internet Explorer/Edge */
-                    user-select: none; /* Non-prefixed version, currently
-                                        supported by Chrome and Opera */
+            user-select: none; 
             margin: 0 auto;
             }
 
@@ -44,6 +36,7 @@
             transform-origin: bottom left;
             animation: bigCat $splash-cat-big forwards;
             opacity: 0;
+            z-index: $z-index-splash;
         }   
 
         &--wreath {
@@ -55,10 +48,11 @@
             position: absolute;
             bottom: -2rem;
             opacity: 0;
-            transform: translate(0, 5rem);
+            // transform: translate(0, 5rem);
             animation: zoomInOut $splash-quick-dur forwards
                 calc(#{$splash-cat-big} + .4s);
-        }    
+            z-index: $z-index-splash;
+            }    
 
     }
 
@@ -69,6 +63,7 @@
         text-align: right;
         margin-top: 17vh;
         color: $color-black;
+        transform: rotate(-10deg);
 
         &--catch {
             font-weight: 900;
@@ -88,39 +83,4 @@
 
         }
     }
-
-    // &__countdown {
-    //     grid-row: splash-mid-start / splash-mid-end;
-    //     grid-column: splash-mid-left / splash-mid-right;
-    //     margin: auto;
-    //     font-size: 20rem;
-    //     font-weight: bold;
-    //     line-height: 0;
-    //     opacity: 0;
-    //     text-shadow: 2px 2px 2px rgba($color-black, .4);
-
-    //     &--3 {
-    //         animation: zoomInOut $splash-count-dur $splash-dur;
-    //         color: $color-purple-dark;
-    //         &:before {
-    //             content: "3";
-    //         }
-    //     }
-
-    //     &--2 {
-    //         animation: zoomInOut $splash-count-dur calc(#{$splash-dur} + .8s);
-    //         color: $color-blue-dark;
-    //         &:before {
-    //             content: "2";
-    //         }
-    //     }
-
-    //     &--1 {
-    //         animation: zoomInOut $splash-count-dur calc(#{$splash-dur} + 1.6s);
-    //         color: $color-green-dark;
-    //         &:before {
-    //             content: "1";
-    //         }
-    //     }
-    // }
 }

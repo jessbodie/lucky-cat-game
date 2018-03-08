@@ -6,6 +6,9 @@
     opacity: .99;
     position: relative;
     z-index: $z-index-canvas;
+    background: linear-gradient(90deg, $color-green-dull 0%, 
+        $color-green-lime 50%, $color-green-dull 100%);  
+
 
     &__interior {
         grid-row: interior-top / interior-end;

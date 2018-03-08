@@ -1,4 +1,4 @@
 @mixin rainbowAnimation {
     height: 150%;
-    animation: $splash-dur rainbowFade $splash-cat-big ease-in forwards;
+    animation: $splash-dur rainbowFade $splash-cat-big ease-out forwards;
 }
