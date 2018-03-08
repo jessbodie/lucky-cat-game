@@ -175,23 +175,23 @@
 @keyframes scoreIn {
   0% {
     opacity: 0;
-    transform: scale(.2) translate(165vw, 110vh);
+    transform: scale(.2) translate(168vw, 110vh);
     visibility: hidden;
   }
 
-  40% {
+  25% {
     opacity: 1;
     transform: scale(1) translate(0, 0);
     visibility: visible;
   }
 
-  50% {
-    opacity: .5;
-    transform: scale(9) translate(0, 0);
+  30% {
+    opacity: .7;
+    transform: scale(8) translate(0, 0);
     visibility: visible;
   }
 
-  55% {
+  35% {
     opacity: 1;
     transform: scale(1) translate(0, 0);
     visibility: visible;
@@ -215,20 +215,20 @@
 
 @keyframes zoomWow {
   0% {
-    opacity: 1;
-    transform: scale(.2) rotate(-10deg);
+    opacity: 0;
+    transform: scale(.8) rotate(18deg);
     visibility: hidden;
   }
 
   80% {
     opacity: .8;
-    transform: scale(12) rotate(-20deg);
+    transform: scale(10) rotate(18deg);
     visibility: visible;
   }
 
   100% {
     opacity: 0;
-    transform: scale(1) rotate(-20deg);
+    transform: scale(12) rotate(18deg);
     visibility: hidden;
   }
 

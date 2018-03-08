@@ -171,8 +171,6 @@
         animation: zoomIn $splash-quick-dur forwards $splash-status-del;
         height: 2.5rem;
         width: 103%;
-        // @media all and (max-width: 800px) and (orientation: portrait) 
-        //     { height: 4rem; }
         }
 
     &__bot--blue {

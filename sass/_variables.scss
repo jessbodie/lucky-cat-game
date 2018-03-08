@@ -29,10 +29,10 @@ $splash-little-del: calc(#{$splash-pot-del} + (#{$splash-pot-dur} / 2));
 $splash-text-dur: 4s;
 $splash-status-del: calc(#{$splash-pot-del} + #{$splash-pot-dur});
 $splash-quick-dur: 1s;
-$score-anim-dur: 3s;
+$score-anim-dur: 4s; 
 $replay-anim-del: calc(#{$score-anim-dur} / 2);
 $wow-anim-del: calc(#{$score-anim-dur} / 3);
-$wow-anim-dur: $wow-anim-del;
+$wow-anim-dur: calc(#{$score-anim-dur} / 6);
 
 // COLORS
 $color-green-dull: #6C9D83;

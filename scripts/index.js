@@ -302,6 +302,7 @@ var controller = (function(UICtrl, dataCtrl) {
             var isPlayBtn = UICtrl.displayPlayBtn();
             if (isPlayBtn) {
                 document.getElementById("play-btn").addEventListener("click", function() {
+                    document.getElementById("bigscore__wow").remove();
                     document.getElementById("bigscore").remove();
                     startGame();
                     UICtrl.hidePlayBtn();
@@ -321,7 +322,7 @@ var controller = (function(UICtrl, dataCtrl) {
             wow.textContent = "wow!";
             console.log(wow);
             document.getElementById("bigscore").appendChild(wow);
-
+            console.log(bigscore);
 
         }, time);
     };
@@ -355,7 +356,7 @@ var controller = (function(UICtrl, dataCtrl) {
         // Add target listener: on click, process success
         document.getElementById("target").addEventListener("click", processSuccess);
 
-        // Add target listener: on touch, show wreath
+        // Add listener: on touch, show wreath
         document.getElementById("target").addEventListener("touchstart", function(e) {
             e.target.setAttribute("style", "opacity: 1");
 
