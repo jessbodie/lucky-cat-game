@@ -285,12 +285,14 @@ header {
     transform-origin: bottom left;
     animation: zoomIn 1s forwards calc(calc(2s + 1s) + calc(6s - 2.5s));
     height: 2.5rem;
-    width: 105%; }
+    width: 103%; }
   .status__bot--blue {
     grid-row: level-end / status-bottom;
     grid-column: 2 / span 1;
     background: linear-gradient(0deg, #0054d4 0%, rgba(46, 106, 197, 0) 100%);
     opacity: 0;
+    height: 2.5rem;
+    width: 103%;
     transform-origin: bottom center;
     animation: zoomIn 1s forwards calc(calc(2s + 1s) + calc(6s - 2.5s)); }
   .status__bot--purple {
@@ -355,7 +357,20 @@ header {
   .target:hover {
     cursor: pointer; }
   .target--cat {
-    transform: scale(1.5); }
+    transform: scale(1.5);
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */ }
   .target--wreath {
     display: inline-block;
     position: relative;
@@ -366,7 +381,20 @@ header {
     left: -2rem;
     width: 200%;
     height: 200%;
-    border-radius: 2rem; }
+    border-radius: 2rem;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */ }
     .target--wreath:focus, .target--wreath:hover, .target--wreath:active {
       opacity: 1;
       transition: opacity 300ms ease-out; }

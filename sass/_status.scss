@@ -170,7 +170,7 @@
         transform-origin: bottom left;
         animation: zoomIn $splash-quick-dur forwards $splash-status-del;
         height: 2.5rem;
-        width: 105%;
+        width: 103%;
         // @media all and (max-width: 800px) and (orientation: portrait) 
         //     { height: 4rem; }
         }
@@ -181,6 +181,8 @@
         background: linear-gradient(0deg, rgba($color-blue-dark, 1) 0%, 
             rgba($color-blue, 0) 100%);  
         opacity: 0;
+        height: 2.5rem;
+        width: 103%;
         transform-origin: bottom center;
         animation: zoomIn $splash-quick-dur forwards $splash-status-del;
         }

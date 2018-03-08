@@ -7,7 +7,7 @@ var score = 0;
 var increment = 10;
 
 // Level
-var gameTimeMS = 45000;
+var gameTimeMS = 30000;
 
 // Target location
 
@@ -48,6 +48,7 @@ var gameTimeMS = 45000;
 var UIController = (function() {
 
     return {
+
         // Display target in rand location that 
         // animates according to rand inputs 
         displayTarget: function(x, y, delay, dur, moveX, moveY, sz) {
@@ -204,7 +205,14 @@ var UIController = (function() {
             else {
               cancelFullScreen.call(doc);
             }
-        }
+        },
+
+        // Set height of container to do innerHeight
+        containerSize: function() {
+            var winHeight = window.innerHeight;
+            document.getElementById("container").setAttribute("style", "height: " + winHeight + "px ;")
+        }    
+    
     }
 })();
 
@@ -215,9 +223,9 @@ var controller = (function(UICtrl, dataCtrl) {
     // Event listeners
     var setupEventListeners = function() {
 
-        var winHeight = window.innerHeight;
-        console.log(winHeight);
-        document.getElementById("container").setAttribute("style", "height: " + winHeight + "px ;")
+        // On load and resize, reset window to innerHeight
+        window.addEventListener("resize", UICtrl.containerSize);
+        document.addEventListener("DOMContentLoaded", UICtrl.containerSize);
 
         // When animation ends, hide animation div and listen to start game
         document.getElementById("anim-last").addEventListener("animationend", function() {
@@ -260,6 +268,7 @@ var controller = (function(UICtrl, dataCtrl) {
 
 
     };
+
 
     // Set timer for showing new targets 
     // Target Interval ID, must be global
@@ -343,8 +352,14 @@ var controller = (function(UICtrl, dataCtrl) {
         UICtrl.displayTarget(xLoc, yLoc, animDelay, animDuration, xMove, yMove, scaleSize);
         console.log("x, y: " + xLoc + ", " + yLoc + " / delay: " + animDelay + "/ scaleSize: " + scaleSize + " Move: " + xMove + ", " + yMove);
 
-        // Add listener to handle click success
+        // Add target listener: on click, process success
         document.getElementById("target").addEventListener("click", processSuccess);
+
+        // Add target listener: on touch, show wreath
+        document.getElementById("target").addEventListener("touchstart", function(e) {
+            e.target.setAttribute("style", "opacity: 1");
+
+        });
     }
     
     // On success: hide target, update score, show new target
