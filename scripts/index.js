@@ -238,6 +238,7 @@ var controller = (function(UICtrl, dataCtrl) {
                     if (window.matchMedia("(max-width: 800px)").matches) {
                         UICtrl.fullScreenToggle();
                     }
+                    console.log('play start click');
                     startGame();
                     UICtrl.hidePlayStart();
                 })

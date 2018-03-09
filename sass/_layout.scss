@@ -1,9 +1,13 @@
 .container {
+    // IE 11 requires use of old grid spec
+    display: -ms-grid;
     display: grid;
+    -ms-grid-rows: $max-move 1fr $max-move;
     grid-template-rows: 
         [top-start] $max-move 
         [interior-top] 1fr 
         [interior-end] $max-move [bottom-end];
+    -ms-grid-columns: $max-move 1fr $max-move $status-width;
     grid-template-columns: 
         [left-start] $max-move 
         [interior-left] 1fr 
@@ -16,8 +20,8 @@
     // height: 100vh; // Set in JS for innerHeight
     max-height: 100vh;
     overflow: hidden;
-    background-color: $color-green-dull;  
+    background: $color-green-dull;  
     // background: linear-gradient(90deg, $color-green-dull 0%, 
-    //     $color-green-lime 50%, $color-green-dull 100%);  
+        // $color-green-lime 50%, $color-green-dull 100%);  
 
 }

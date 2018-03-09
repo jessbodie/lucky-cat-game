@@ -1,4 +1,8 @@
 .splash {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
     grid-row: top-start / bottom-end;
     grid-column: interior-left / interior-right;
     position: relative;
@@ -6,11 +10,14 @@
     opacity: .99;
     width: 100%;
     height: 100%;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-rows: 10vh 1fr 20vh;
     grid-template-rows: 
         [splash-top] 10vh 
         [splash-mid-start] 1fr 
         [splash-mid-end] 20vh [splash-end];
+    -ms-grid-columns: 10vw 1fr 10vw;
     grid-template-columns: 
         [splash-start] 10vw 
         [splash-mid-left] 1fr 
@@ -26,20 +33,31 @@
             }
 
         &--big {
+            -ms-grid-row: 1;
+            -ms-grid-row-span: 3;
+            -ms-grid-column: 1;
+            -ms-grid-column-span: 3;
             grid-row: splash-top / splash-end;
             grid-column: splash-start / splash-right;
             position: relative;
             top: 50vh;
-            left: calc(50vw - #{$status-width});
+            left: 36vw;
+            // left: calc(50vw - #{$status-width});
             width: 100%;
-            transform: scale(2.5) translate(calc(-50vw + #{$status-width}), 20vh);
+            transform: scale(2.5) translate(42vw, 20vh);
+            // transform: scale(2.5) translate(calc(-50vw + #{$status-width}), 20vh);
             transform-origin: bottom left;
             animation: bigCat $splash-cat-big forwards;
+
             opacity: 0;
             z-index: $z-index-splash;
         }   
 
         &--wreath {
+            -ms-grid-row: 3;
+            -ms-grid-row-span: 1;
+            -ms-grid-column: 2;
+            -ms-grid-column-span: 1;
             grid-row: splash-mid-end / splash-end;
             grid-column: splash-mid-left / splash-mid-right;
             align-self: end;
@@ -48,15 +66,19 @@
             position: absolute;
             bottom: -2rem;
             opacity: 0;
-            // transform: translate(0, 5rem);
-            animation: zoomInOut $splash-quick-dur forwards
-                calc(#{$splash-cat-big} + .4s);
+            animation: zoomInOut $splash-quick-dur forwards 2.4s;
+            // animation: zoomInOut $splash-quick-dur forwards
+            //     calc(#{$splash-cat-big} + .4s);
             z-index: $z-index-splash;
             }    
 
     }
 
     &__instruc {
+        -ms-grid-row: 2;
+        -ms-grid-row-span: 1;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 2;
         grid-row: splash-mid-start / splash-mid-end;
         grid-column: splash-start / splash-mid-right;
         width: 70%;
@@ -67,20 +89,19 @@
 
         &--catch {
             font-weight: 900;
-            font-size: 4vw;
-            animation: zoomInOut $splash-text-dur forwards calc(#{$splash-cat-big} - .2s);
+            font-size: 3.5vw;
+            animation: zoomInOut $splash-text-dur forwards 1.8s;
             transform-origin: bottom right;
             opacity: 0;
         }
 
         &--fill {
-            font-size: 2.6vw;
-            animation: zoomInOut calc(#{$splash-text-dur} - .5s) forwards 
-                calc(#{$splash-pot-del} + .2s);
+            font-size: 2.4vw;
+            animation: zoomInOut 3.5s forwards 3.2s;
+            // animation: zoomInOut calc(#{$splash-text-dur} - .5s) forwards calc(#{$splash-pot-del} + .2s);
             transform-origin: bottom left;
             opacity: 0;
             text-shadow: 1px 2px 2px rgba($color-gray, .5);
-
         }
     }
 }

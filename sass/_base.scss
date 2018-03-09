@@ -19,11 +19,13 @@ body {
     margin: 0 auto;
     font-family: 'Poppins', sans-serif;
     color: $color-black;
-    background: linear-gradient(90deg, $color-green-dull 0%, 
-        $color-green-lime 50%, $color-green-dull 100%);  
   }
 
 .fullscreen {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 1;
   grid-row: top-start / interior-top;
   grid-column: status-start / right-end;
   z-index: $z-index-fullscreen;
@@ -31,7 +33,8 @@ body {
   position: relative;
 
   &__btn {
-    position: relative;
+    position: absolute;
+    right: 0;
     width: 3.2rem;
     height: 2.5rem;
     opacity: .3;
@@ -49,6 +52,10 @@ body {
 }  
 
 footer {
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 4;
     grid-row: interior-end / bottom-end;
     grid-column: interior-left / interior-right;
     position: relative;
@@ -86,7 +93,11 @@ footer {
   }  
 
   header {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
     grid-row: top-start / bottom-end;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 4;
     grid-column: left-start / status-start;
   
   }

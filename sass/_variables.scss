@@ -1,7 +1,14 @@
+
 // DIMENSIONS
+// Due to IE, Edge, Safari inadequacies, need to remove calc 
 $status-width: 6rem;
-$canvas-width: calc(100vw - #{$status-width});
+// $canvas-width: calc(100vw - #{$status-width});
+$canvas-width: 100%;
 $canvas-height: 100%;
+$canvas-width-interior: 88%;
+// $canvas-width-interior: calc(#{$canvas-width} - (#{$max-move * 2}));
+$canvas-height-interior: 90%;
+// $canvas-height-interior: calc(#{$canvas-height} - (#{$max-move * 2}));
 $max-width-sm: 800px; // Need to update in JS Event Listeners
 
 $max-move: 4rem;
@@ -11,6 +18,7 @@ $z-index-target: 300;
 $z-index-back: 0;
 $z-index-back-elements: 5;
 $z-index-canvas: 10;
+$z-index-cat-behind-pot: 20;
 $z-index-pot: 25;
 
 $z-index-feedback: 50;
@@ -20,19 +28,26 @@ $z-index-footer: 100;
 
 
 // ANIMATION TIMES
+// Due to IE, Edge, Safari inadequacies, need to remove calc 
 $splash-dur: 6s;
 $splash-cat-big: 2s;
-$splash-count-dur: .7s;
-$splash-pot-dur: calc(#{$splash-dur} - 2.5s);
-$splash-pot-del: calc(#{$splash-cat-big} + 1s);
-$splash-little-del: calc(#{$splash-pot-del} + (#{$splash-pot-dur} / 2));
+$splash-pot-dur: 3.5s;
+// $splash-pot-dur: calc(#{$splash-dur} - 2.5s);
+$splash-pot-del: 3s;
+// $splash-pot-del: calc(#{$splash-cat-big} + 1s);
+$splash-little-del: 4.75s;
+// $splash-little-del: calc(#{$splash-pot-del} + (#{$splash-pot-dur} / 2));
 $splash-text-dur: 4s;
-$splash-status-del: calc(#{$splash-pot-del} + #{$splash-pot-dur});
+$splash-status-del: 6.5s;
+// $splash-status-del: calc(#{$splash-pot-del} + #{$splash-pot-dur});
 $splash-quick-dur: 1s;
 $score-anim-dur: 4s; 
-$replay-anim-del: calc(#{$score-anim-dur} / 2);
-$wow-anim-del: calc(#{$score-anim-dur} / 3);
-$wow-anim-dur: calc(#{$score-anim-dur} / 6);
+$replay-anim-del: 2s;
+// $replay-anim-del: calc(#{$score-anim-dur} / 2);
+$wow-anim-del: 1.33s;
+// $wow-anim-del: calc(#{$score-anim-dur} / 3);
+$wow-anim-dur: .67s;
+// $wow-anim-dur: calc(#{$score-anim-dur} / 6);
 
 // COLORS
 $color-green-dull: #6C9D83;

@@ -1,4 +1,8 @@
 .play {
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
     grid-row: interior-top / interior-end;
     grid-column: interior-left / interior-right;
     cursor: pointer;
