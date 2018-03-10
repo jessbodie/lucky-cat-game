@@ -90,10 +90,6 @@
         z-index: $z-index-pot;
         opacity: 0;
         animation: $splash-pot-dur potOGold $splash-pot-del forwards;
-        // TODO ANIMATION IS FUNKY ON IE 11
-        // animation: 20s potOGold 20s forwards;
-        // transform: scale(6) translate(-7vw, 7vh);
-
 
         img {
             margin: .6rem auto 0 auto;

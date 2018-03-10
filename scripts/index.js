@@ -101,7 +101,8 @@ var UIController = (function() {
             shamrocksPic.alt = "Good catch, points scored!"
             shamrocksPic.id = "shamrock-feedback";
             var visualFeedback = document.getElementById("feedback").appendChild(shamrocksPic);
-            // When animation ends, removed shamrock element
+            // When animation ends, removed shamrock element 
+            // TODO - Trigger on another event and change to removeChild()
             document.getElementById("shamrock-feedback").addEventListener("animationend", function() {
                 document.getElementById("shamrock-feedback").remove();
             });
@@ -303,8 +304,8 @@ var controller = (function(UICtrl, dataCtrl) {
             var isPlayBtn = UICtrl.displayPlayBtn();
             if (isPlayBtn) {
                 document.getElementById("play-btn").addEventListener("click", function() {
-                    document.getElementById("bigscore__wow").remove();
-                    document.getElementById("bigscore").remove();
+                    document.getElementById("bigscore").removeChild(document.getElementById("bigscore__wow"));
+                    document.getElementById("canvas__interior").removeChild(document.getElementById("bigscore"));
                     startGame();
                     UICtrl.hidePlayBtn();
                 })
