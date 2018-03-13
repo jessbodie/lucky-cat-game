@@ -1,9 +1,17 @@
 .status {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+    -ms-grid-column: 4;
+    -ms-grid-column-span: 1;
     grid-row: top-start / bottom-end;
     grid-column: status-start / right-end;
     width: 100%;
 
     position: relative;
+    // IE 11 requires use of old grid spec
+    display: -ms-grid;
+    -ms-grid-rows: 2fr 1fr min-content min-content min-content min-content;
+    -ms-grid-columns: 1fr 1fr 1fr;
     display: grid;
     grid-template-columns: repeat(3, [col-start] 1fr [col-end]);
     grid-template-rows: 
@@ -15,6 +23,10 @@
         [level-end] min-content [status-bottom];
 
     &__feedback {
+        -ms-grid-row: 2;
+        -ms-grid-row-span: 1;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
         grid-row: status-top / feedback-end;
         grid-column: 1 / -1;
         margin: -0.8rem auto;
@@ -38,6 +50,12 @@
     }
 
     &__score {
+        -ms-grid-row: 3;
+        -ms-grid-row-span: 1;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
+        grid-row: score-start / score-end;
+        grid-column: 1 / -1;
         font-size: 1.8rem;
         background-color: $color-gray;
         padding: 0rem .6rem;
@@ -45,35 +63,36 @@
         border-radius: 2px;
         text-align: right;
         box-shadow: 1px 1px 1px 1px rgba($color-black, .2);
-        grid-row: score-start / score-end;
-        grid-column: 1 / -1;
         width: 4rem;
         z-index: $z-index-feedback;
         margin: 0.75rem 1rem .5rem 1rem;
         opacity: 0;
-        animation: zoomIn $splash-quick-dur forwards 
-            calc(#{$splash-status-del} + .6s);
+        animation: zoomIn $splash-quick-dur forwards 7.1s;
+        // animation: zoomIn $splash-quick-dur forwards 
+        //     calc(#{$splash-status-del} + .6s);
         }    
 
     // Pot o Gold
     &__pic {
+        -ms-grid-row: 4;
+        -ms-grid-row-span: 1;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
         grid-row: pot-start / pot-end;
         grid-column: 1 / -1;
-        margin: 0 auto;
         filter: drop-shadow( 2px 2px 2px rgba($color-black, .6) );
         position: relative;
-        bottom: 0;
+        top: 0;
         left: 0;
-        display: flex;
-        align-items: middle;
-        // width: auto;
+        display: inline-block;
+        width: 100%;
         height: 4rem;
-        opacity: 0;
         z-index: $z-index-pot;
+        opacity: 0;
         animation: $splash-pot-dur potOGold $splash-pot-del forwards;
 
-
         img {
+            margin: .6rem auto 0 auto;
             width: 3.4rem;
             height: auto;
             display: block;
@@ -82,21 +101,30 @@
         }
 
         &:after {
+            -ms-grid-row: 4;
+            -ms-grid-row-span: 1;
+            -ms-grid-column: 1;
+            -ms-grid-column-span: 3;
             grid-row: pot-start / pot-end;
             grid-column: 1 / -1;
                 content: url(../img/lucky_cat_sm.svg);
             position: absolute;
             top: -1rem;
-            left: 1rem;
+            left: 2rem;
             display: block;
-            z-index: calc(#{$z-index-pot} - 5);
+            z-index: $z-index-cat-behind-pot;
+            // z-index: calc(#{$z-index-pot} - 5);
             opacity: 0;
-            animation: littleCat $splash-quick-dur $splash-little-del;
+            animation: littleCat $splash-quick-dur forwards $splash-little-del;
             // animation: littleCat 10s 2s;
         }
     }
 
     &__timer {
+        -ms-grid-row: 4;
+        -ms-grid-row-span: 1;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
         grid-row: pot-start / pot-end;
         grid-column: 1 / -1;
         margin: 0 auto;
@@ -104,13 +132,13 @@
         top: 0;
         left: 0;
         z-index: $z-index-feedback;
-        width: auto;
+        width: 100%;
         height: 4rem;
         display: block;
         
         img, svg {
             display: block;
-            margin: 0;
+            margin: 0 auto;
             width: 4rem;
             height: 4rem;
             opacity: .5;
@@ -119,6 +147,10 @@
     }
 
     &__level {
+        -ms-grid-row: 5;
+        -ms-grid-row-span: 1;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
         grid-row: level-start / level-end;
         grid-column: 1 / -1;
         width: 100%;
@@ -126,11 +158,16 @@
         text-align: center;
         z-index: $z-index-back-elements;
         opacity: 0;
-        animation: zoomIn $splash-quick-dur forwards 
-            calc(#{$splash-status-del} + .3s);
+        animation: zoomIn $splash-quick-dur forwards 6.5s;
+        // animation: zoomIn $splash-quick-dur forwards 
+        //     calc(#{$splash-status-del} + .3s);
         }  
     
     &__top--green {
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 6;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 1;
         grid-row: status-top / status-bottom;
         grid-column: 1 / span 1;
         background: linear-gradient(0deg, rgba($color-green-dark, 0) 10%, 
@@ -140,6 +177,10 @@
     }
 
     &__top--blue {
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 6;
+        -ms-grid-column: 2;
+        -ms-grid-column-span: 1;
         grid-row: status-top / status-bottom;
         grid-column: 2 / span 1;
         background: linear-gradient(0deg, rgba($color-blue-dark, 0) 5%, 
@@ -149,6 +190,10 @@
         }
 
     &__top--purple {
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 6;
+        -ms-grid-column: 3;
+        -ms-grid-column-span: 1;
         grid-row: status-top / status-bottom;
         grid-column: 3 / span 1;
         background: linear-gradient(0deg, rgba($color-purple-dark, 0) 0%, 
@@ -159,6 +204,10 @@
 
     
     &__bot--green {
+        -ms-grid-row: 6;
+        -ms-grid-row-span: 1;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 1;
         grid-row: level-end / status-bottom;
         grid-column: 1 / span 1;
         background: linear-gradient(0deg, rgba($color-green-dark, 1) 0%, 
@@ -174,6 +223,10 @@
         }
 
     &__bot--blue {
+        -ms-grid-row: 6;
+        -ms-grid-row-span: 1;
+        -ms-grid-column: 2;
+        -ms-grid-column-span: 1;
         grid-row: level-end / status-bottom;
         grid-column: 2 / span 1;
         background: linear-gradient(0deg, rgba($color-blue-dark, 1) 0%, 
@@ -186,6 +239,10 @@
         }
 
     &__bot--purple {
+        -ms-grid-row: 6;
+        -ms-grid-row-span: 1;
+        -ms-grid-column: 3;
+        -ms-grid-column-span: 1;
         grid-row: level-end / status-bottom;
         grid-column: 3 / span 1;
         background: linear-gradient(0deg, rgba($color-purple-dark, 1) 0%, 

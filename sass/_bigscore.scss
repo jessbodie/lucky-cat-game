@@ -1,6 +1,10 @@
 .bigscore {
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
     grid-row: interior-top / span 1;
-    grid-column: 2 / span 1;
+    grid-column: interior-left / span 1;
     margin: auto;
     color: $color-black;
     width: 25vmin;
@@ -9,7 +13,7 @@
     background-color: $color-gray;
     padding: 0rem 1rem;
     border-radius: 2px;
-    text-align: right;
+    text-align: center;
     box-shadow: 2px 2px 2px 1px rgba($color-black, .2);
     display: block;
     position: relative;
@@ -28,7 +32,7 @@
         right: -2rem;
         text-align: center;
         font-weight: bold;
-        transform: rotate(18deg);
+        transform: rotate(-10deg);
         animation: zoomWow $wow-anim-dur $wow-anim-del ease-in;
         opacity: 0;
         z-index: $z-index-splash;

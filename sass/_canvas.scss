@@ -1,26 +1,36 @@
 .canvas {
+    // IE 11 grid limitations require work arounds...
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
     grid-row: top-start / bottom-end;
     grid-column: left-start / status-start;
     width: $canvas-width;
     height: $canvas-height;
     opacity: .99;
     position: relative;
+    display: block;
     z-index: $z-index-canvas;
     background: linear-gradient(90deg, $color-green-dull 0%, 
         $color-green-lime 50%, $color-green-dull 100%);  
 
 
     &__interior {
+        -ms-grid-row: 2;
+        -ms-grid-row-span: 1;
+        -ms-grid-column: 2;
+        -ms-grid-column-span: 1;
         grid-row: interior-top / interior-end;
         grid-column: interior-left / interior-right;
-        width: calc(#{$canvas-width} - (#{$max-move * 2}));
-        height: calc(#{$canvas-height} - (#{$max-move * 2}));
-        margin: $max-move auto;
-        vertical-align: middle;
+        width: $canvas-width-interior;
+        height: $canvas-height-interior;
+        display: block;
+        margin: 5% auto;
         opacity: .99;
         position: relative;
         z-index: $z-index-canvas;
-        // border: 2px solid rgba($color-green, .3);
+        // border: 2px solid rgba($color-green, .4);
 
     }
 }
