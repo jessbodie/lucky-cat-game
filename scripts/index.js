@@ -198,20 +198,34 @@ var UIController = (function() {
             var docEl = doc.documentElement;
           
             var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-            var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-          
-            if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-              requestFullScreen.call(docEl);
+
+            if (requestFullScreen) {
+                var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+              
+                if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                  requestFullScreen.call(docEl);
+                }
+                else {
+                  cancelFullScreen.call(doc);
+                }
+            } else {
+                document.getElementById("fullscreen").setAttribute("style", "display:none");
+                UIController.containerSize();
+                return false;
             }
-            else {
-              cancelFullScreen.call(doc);
-            }
+            
         },
 
         // Set height of container to do innerHeight
         containerSize: function() {
+            // console.log('container size');
             var winHeight = window.innerHeight;
-            document.getElementById("container").setAttribute("style", "height: " + winHeight + "px ;")
+            var winWidth = window.innerWidth;
+            // console.log("height: " + winHeight);
+            // console.log("width: " + window.innerWidth);
+            // console.log("screen height: " + window.screen.height);
+            // console.log("screen width: " + window.screen.width);
+            document.getElementById("container").setAttribute("style", "height: " + winHeight + "px; width: " + winWidth + "px; max-height: " + winHeight + "px; max-width: " + winWidth + "px; min-height: " + winHeight + "px; min-width: " + winWidth + "px; ")
         }    
     
     }
@@ -224,9 +238,24 @@ var controller = (function(UICtrl, dataCtrl) {
     // Event listeners
     var setupEventListeners = function() {
 
-        // On load and resize, reset window to innerHeight
-        window.addEventListener("resize", UICtrl.containerSize);
+        // DEBUG
+        document.addEventListener("dblclick", function() {
+            console.log('double click');
+            console.log(e.target);
+        });
+
+
+        // On load, resize, and reorient: reset window to innerHeight
         document.addEventListener("DOMContentLoaded", UICtrl.containerSize);
+        window.addEventListener("resize", UICtrl.containerSize);
+        window.addEventListener("orientationchange", UICtrl.containerSize);
+
+        // Detect if touch device
+        var touch = false;
+        window.addEventListener("touchstart", function isTouch() {
+            touch = true;
+            window.removeEventListener("touchstart", isTouch, false);
+        });
 
         // When animation ends, hide animation div and listen to start game
         document.getElementById("anim-last").addEventListener("animationend", function() {
@@ -234,12 +263,13 @@ var controller = (function(UICtrl, dataCtrl) {
             // Add and show Play start button
             var isReady = UICtrl.displayPlayStart();
             if (isReady) {
-                // When Play button, add listener to start game
+                // When click Play button, add listener to start game
                 document.getElementById("play-start").addEventListener("click", function() {
-                    if (window.matchMedia("(max-width: 800px)").matches) {
+                    console.log('play start click');
+                    // If touch and small,  expand window
+                    if ((touch===true) && (window.matchMedia("only screen and (max-width: 760px)").matches)) {
                         UICtrl.fullScreenToggle();
                     }
-                    console.log('play start click');
                     startGame();
                     UICtrl.hidePlayStart();
                 })
@@ -267,8 +297,6 @@ var controller = (function(UICtrl, dataCtrl) {
         //     console.log('Selection started'); 
         //     return false;
         //   }, false);
-
-
     };
 
 
@@ -308,11 +336,12 @@ var controller = (function(UICtrl, dataCtrl) {
                     document.getElementById("canvas__interior").removeChild(document.getElementById("bigscore"));
                     startGame();
                     UICtrl.hidePlayBtn();
+                    // For iOS, check to resize game
+                    UICtrl.containerSize();
                 })
             }
             
             // Also, show score animation
-            console.log('score animation');
             var bigScore = document.createElement("div");
             bigScore.className = "bigscore";
             bigScore.id = "bigscore";
@@ -322,9 +351,7 @@ var controller = (function(UICtrl, dataCtrl) {
             wow.className = "bigscore__wow";
             wow.id = "bigscore__wow";
             wow.textContent = "wow!";
-            console.log(wow);
             document.getElementById("bigscore").appendChild(wow);
-            console.log(bigscore);
 
         }, time);
     };
@@ -335,8 +362,8 @@ var controller = (function(UICtrl, dataCtrl) {
         UICtrl.hideTarget();
 
         // Get random x and y coordinates
-        var xLoc = dataCtrl.getRand(0, 97);
-        var yLoc = dataCtrl.getRand(0, 94);
+        var xLoc = dataCtrl.getRand(0, 100);
+        var yLoc = dataCtrl.getRand(0, 100);
         
         // Get random animation delay time, ms
         var animDelay = dataCtrl.getRand(300, 700);
@@ -366,7 +393,7 @@ var controller = (function(UICtrl, dataCtrl) {
     }
     
     // On success: hide target, update score, show new target
-    function processSuccess() {
+    function processSuccess(e) {
         // Hide target
         UICtrl.hideTarget();
 

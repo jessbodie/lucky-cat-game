@@ -13,7 +13,7 @@
     background-color: $color-gray;
     padding: 0rem 1rem;
     border-radius: 2px;
-    text-align: right;
+    text-align: center;
     box-shadow: 2px 2px 2px 1px rgba($color-black, .2);
     display: block;
     position: relative;
@@ -32,7 +32,7 @@
         right: -2rem;
         text-align: center;
         font-weight: bold;
-        transform: rotate(18deg);
+        transform: rotate(-10deg);
         animation: zoomWow $wow-anim-dur $wow-anim-del ease-in;
         opacity: 0;
         z-index: $z-index-splash;

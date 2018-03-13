@@ -220,19 +220,19 @@
 @keyframes zoomWow {
   0% {
     opacity: 0;
-    transform: scale(.8) rotate(18deg);
+    transform: scale(.8) rotate(-10deg);
     visibility: hidden;
   }
 
   80% {
     opacity: .8;
-    transform: scale(10) rotate(18deg);
+    transform: scale(10) rotate(-10deg);
     visibility: visible;
   }
 
   100% {
     opacity: 0;
-    transform: scale(12) rotate(18deg);
+    transform: scale(12) rotate(-10deg);
     visibility: hidden;
   }
 

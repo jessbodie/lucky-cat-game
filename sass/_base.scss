@@ -19,6 +19,9 @@ body {
     margin: 0 auto;
     font-family: 'Poppins', sans-serif;
     color: $color-black;
+    position: fixed; // testing
+    overflow: hidden; // testing
+    -webkit-text-size-adjust: 100%;
   }
 
 .fullscreen {
@@ -63,7 +66,6 @@ footer {
   }
   
 .footer {
-  font-size: .75rem;
   color: $color-black;
   position: absolute;
   bottom: 0;
@@ -73,6 +75,10 @@ footer {
   opacity: .6;
   padding-bottom: .8rem; 
 
+  p {
+    font-size: .85rem;
+  }
+
   a {
     cursor: pointer;
     color: $color-green-dark;
@@ -81,6 +87,7 @@ footer {
     top: 0;
     opacity: .99;
     z-index: $z-index-footer;
+    display: inline-block;
 
     &:hover, 
     &:active, 
