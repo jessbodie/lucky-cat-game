@@ -238,13 +238,6 @@ var controller = (function(UICtrl, dataCtrl) {
     // Event listeners
     var setupEventListeners = function() {
 
-        // DEBUG
-        document.addEventListener("dblclick", function() {
-            console.log('double click');
-            console.log(e.target);
-        });
-
-
         // On load, resize, and reorient: reset window to innerHeight
         document.addEventListener("DOMContentLoaded", UICtrl.containerSize);
         window.addEventListener("resize", UICtrl.containerSize);
@@ -265,7 +258,6 @@ var controller = (function(UICtrl, dataCtrl) {
             if (isReady) {
                 // When click Play button, add listener to start game
                 document.getElementById("play-start").addEventListener("click", function() {
-                    console.log('play start click');
                     // If touch and small,  expand window
                     if ((touch===true) && (window.matchMedia("only screen and (max-width: 760px)").matches)) {
                         UICtrl.fullScreenToggle();
@@ -279,24 +271,14 @@ var controller = (function(UICtrl, dataCtrl) {
         // Full screen toggle
         document.getElementById("fullscreen-toggle").addEventListener("click", UICtrl.fullScreenToggle, false);  
 
-        ///////////////////////////////////
-        // TODO Double click selects target
-        // Related to DBLCLICK bug in Firefox?   
-        // https://github.com/mozilla/geckodriver/issues/661
-        // document.getElementById("target").addEventListener("dblclick", 
-        // function() {
-        //     console.log('dblclick');
-            // if(document.selection && document.selection.empty) {
-            //     document.selection.empty();
-            // } else if(window.getSelection) {
-            //     var sel = window.getSelection();
-            //     sel.removeAllRanges();
-            // }
-        // }, false);
-        // document.getElementById("target").addEventListener("selectstart", function() {
-        //     console.log('Selection started'); 
-        //     return false;
-        //   }, false);
+        // Prevent double-click causing selection of target and score
+        document.addEventListener("dblclick", function() {
+            if (window.getSelection) {
+                window.getSelection().removeAllRanges();
+            } else if (document.selection) {
+                document.selection.empty();
+            }
+        });
     };
 
 

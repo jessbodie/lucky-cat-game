@@ -9,6 +9,7 @@
     z-index: $z-index-target;
     opacity: 1;
     transform: scale(1.2) translate3d(0, 0, 0);
+    transform-origin: center;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */

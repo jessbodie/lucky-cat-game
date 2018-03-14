@@ -200,7 +200,9 @@ header {
     width: 88%;
     height: 90%;
     display: block;
-    margin: 5% auto;
+    margin: 2.5rem auto;
+    top: 0;
+    left: 0;
     opacity: .99;
     position: relative;
     z-index: 10; }
@@ -423,6 +425,7 @@ header {
   z-index: 300;
   opacity: 1;
   transform: scale(1.2) translate3d(0, 0, 0);
+  transform-origin: center;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;

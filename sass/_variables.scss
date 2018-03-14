@@ -9,8 +9,7 @@ $canvas-width-interior: 88%;
 // $canvas-width-interior: calc(#{$canvas-width} - (#{$max-move * 2}));
 $canvas-height-interior: 90%;
 // $canvas-height-interior: calc(#{$canvas-height} - (#{$max-move * 2}));
-$max-width-sm: 800px; // Need to update in JS Event Listeners
-
+$max-width-sm: 760px; 
 $max-move: 4rem;
 
 // Z-INDEX
