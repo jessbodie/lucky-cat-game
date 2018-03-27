@@ -218,14 +218,16 @@ var UIController = (function() {
 
         // Set height of container to do innerHeight
         containerSize: function() {
-            // console.log('container size');
+            console.log('container size');
             var winHeight = window.innerHeight;
             var winWidth = window.innerWidth;
-            // console.log("height: " + winHeight);
-            // console.log("width: " + window.innerWidth);
-            // console.log("screen height: " + window.screen.height);
-            // console.log("screen width: " + window.screen.width);
-            document.getElementById("container").setAttribute("style", "height: " + winHeight + "px; width: " + winWidth + "px; max-height: " + winHeight + "px; max-width: " + winWidth + "px; min-height: " + winHeight + "px; min-width: " + winWidth + "px; ")
+            console.log("height: " + winHeight);
+            console.log("width: " + window.innerWidth);
+            console.log("screen height: " + window.screen.height);
+            console.log("screen width: " + window.screen.width);
+            document.getElementById("container").setAttribute("style", "height: 100%; width: " + winWidth + "px; max-width: " + winWidth + "px; min-height: " + winHeight + "px; min-width: " + winWidth + "px; ");
+            // document.getElementById("container").setAttribute("style", "height: " + winHeight + "px; width: " + winWidth + "px; max-height: " + winHeight + "px; max-width: " + winWidth + "px; min-height: " + winHeight + "px; min-width: " + winWidth + "px; ");
+            document.getElementById("container").scrollIntoView({block: "end", inline: "nearest"});
         }    
     
     }
